@@ -1,0 +1,30 @@
+# Colorschema dark
+color_scheme: dark
+
+# site overview
+title: Semesterarbeit 4 | HF Cloud Native Engineer
+email: laura.dubach@edu.tbz.ch 
+
+description: >-
+  "Music Event Finder Microservice" 
+
+# personal stuff
+author: "Laura Dubach"
+github_username:  "lauradubach"
+
+# technical site
+url: "https://github.com/lauradubach/Semesterarbeit3/tree/main"
+logo: "/Pictures/Autorin.jpg" 
+favicon_ico: "/Pictures/Autorin.jpg"
+remote_theme: just-the-docs/just-the-docs
+plugins:
+  - jekyll-remote-theme
+  - jekyll-feed
+back_to_top: false
+back_to_top_text: "Back to top"
+
+# Enter path with to exclude a file
+exclude:
+  - ressources/notizen/
+  - documentation/Hauptteil/Notizen_aufbau.md
+  - ressources/scripts/Logininfos.json
