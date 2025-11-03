@@ -6,7 +6,10 @@
 
 ## Zusammenfassung
 
-Im Rahmen dieser Semesterarbeit wird ein Microservice entwickelt, der Nutzern das Finden von Musikveranstaltungen erleichtert. Der Service greift auf eine externe Event-API zu, stellt gefilterte Eventdaten über eine REST-Schnittstelle bereit und speichert Nutzerinformationen sowie deren Präferenzen in einer Datenbank. Ziel ist es, eine erweiterbare, moderne und praxisnahe Lösung mit echtem Anwendungsbezug umzusetzen.
+Im Rahmen dieser Semesterarbeit wird der bestehende Microservice „Music Eventfinder“ auf Basis eines DevOps-Ansatzes automatisiert und skalierbar in einer Kubernetes-Umgebung bereitgestellt.
+Der Service ermöglicht Nutzern, Musikveranstaltungen in ihrer Nähe zu finden und stellt die Daten über eine REST-API bereit. Nutzerinformationen sowie deren Präferenzen werden sicher in einer Datenbank gespeichert.
+
+Ziel der Arbeit ist es, eine erweiterbare, moderne und praxisnahe Lösung umzusetzen, die die Kernaspekte von DevOps demonstriert.
 
 ## Kurze Übersicht
 

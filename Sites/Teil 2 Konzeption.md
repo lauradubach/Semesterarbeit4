@@ -12,7 +12,11 @@ Nun gehen wir ins Thema Konzeption über. In diesem Kapitel wird das ganze Proje
     - [Wieso SCRUM](#wieso-scrum)
   - [Ausgangslage \& Motivation](#ausgangslage--motivation)
   - [Anforderungen erheben](#anforderungen-erheben)
+    - [Funktionale Anforderungen](#funktionale-anforderungen)
+    - [Nicht-funktionale Anforderungen](#nicht-funktionale-anforderungen)
   - [Relevanz und Nutzen eines Event-Finders](#relevanz-und-nutzen-eines-event-finders)
+    - [Die Arbeit zeigt konkret, wie ein realer Microservice:](#die-arbeit-zeigt-konkret-wie-ein-realer-microservice)
+    - [Dies bringt Vorteile für:](#dies-bringt-vorteile-für)
   - [Seusag](#seusag)
 - [Planen](#planen)
   - [Zeitplan](#zeitplan)
@@ -83,9 +87,67 @@ Zusätzlich haben wir im Unterricht SCRUM in der Theorie angeschaut und nun kann
 
 ## Ausgangslage & Motivation
 
+Mit der zunehmenden Verbreitung von Cloud-Technologien, Microservice-Architekturen und DevOps-Methoden wächst der Bedarf an skalierbaren, automatisierten und flexibel wartbaren Systemen.
+Unternehmen stehen vor der Herausforderung, Software schnell, zuverlässig und reproduzierbar bereitzustellen — insbesondere in dynamischen Umgebungen wie Kubernetes-Clustern.
+
+Der Music Eventfinder-Microservice dient in dieser Arbeit als praxisnahes Beispiel, um den vollständigen Lebenszyklus eines Cloud-basierten Microservice-Systems zu realisieren.
+Im Fokus steht nicht die fachliche Weiterentwicklung der Anwendung, sondern der Aufbau einer modernen, automatisierten Bereitstellungs- und Betriebsumgebung auf Basis von:
+
+- Containerisierung
+- Continuous Integration und Continuous Deployment (CI/CD)
+- Kubernetes-Orchestrierung
+- Agiler Projektsteuerung nach Scrum
+
+Die persönliche Motivation liegt im Interesse an Cloud-nativem Deployment, moderner Softwarebereitstellung und dem praxisnahen Einsatz von DevOps-Werkzeugen und Kubernetes-Infrastruktur.
+
 ## Anforderungen erheben
 
+Für die erfolgreiche Umsetzung des Projektes werden sowohl funktionale als auch technische/non-funktionale Anforderungen definiert.
+
+### Funktionale Anforderungen
+
+- Bereitstellung des bestehenden Music Eventfinder-Microservices in Containern
+- Externe Event-API-Anbindung bleibt funktional
+- Bereitstellung einer REST-API für Eventdaten
+- Zugriff auf Nutzer-/Einstellungsdaten über Datenbank
+
+### Nicht-funktionale Anforderungen
+
+- Automatisierter Build-, Test- und Deployment-Prozess (CI/CD)
+- Containerisierung mit Docker zur Portabilität
+- Deployment in einem Kubernetes-Cluster
+- Möglichkeit zur Skalierung (Pods/ReplicaSets/Autoscaling)
+- Verwaltung von Konfiguration und Secrets (ConfigMaps & Secrets)
+- Nachvollziehbare Versionierung & Dokumentation
+- Sichere Verarbeitung von Benutzerdaten gemäß modernen Standards
+
 ## Relevanz und Nutzen eines Event-Finders
+
+### Die Arbeit zeigt konkret, wie ein realer Microservice:
+
+- automatisiert entwickelt, gebaut, getestet und deployt wird
+- in einer Kubernetes-Umgebung betrieben und skaliert werden kann
+
+### Dies bringt Vorteile für:
+
+**Entwickler/innen & Studierende**
+
+- Hands-on-Erfahrung mit Kubernetes & DevOps-Pipelines
+- Praxiswissen zu Container-Workflows & Cloud-Infrastruktur
+
+**Unternehmen / Plattformbetreiber**
+
+- Vorlage für automatisierte Softwarebereitstellung
+- Erweiterbare Microservice-Struktur
+- Basis für skalierbare, cloud-native Anwendungen
+
+**Endnutzer/innen**
+
+- Zugriff auf personalisierte Musik-Eventdaten über einen stabilen, skalierbaren Service
+
+Durch den Einsatz moderner Kubernetes und DevOps-Technologien entsteht eine zukunftsfähige, skalierbare und wartungsfreundliche Lösung, die reale Anforderungen an moderne Softwarebereitstellung abbildet.
+
+> (Chat GPT) [Quelle](https://chatgpt.com/share/6908ec06-4a2c-8007-834a-6013e399ba13)
 
 ## Seusag
 
@@ -95,10 +157,12 @@ Hier werde ich das ganze Projekt planen. Es wird ein Zeitplan erstellt, wann wel
 
 ## Zeitplan
 
+![Zeitplan](../Pictures/Zeitplan.png)
+
 ## Meilensteine
 ### 1. Initialisierung
 
-In der Initialisierungsphase wird das Projekt offiziell gestartet. Ziel ist es, eine klare Projektgrundlage zu schaffen. Dazu gehören die Definition von Zielen, die Identifikation von Stakeholdern, die grobe Planung (Zeit, Budget, Ressourcen) sowie die Erstellung eines Projektauftrags. Risiken und Chancen werden frühzeitig analysiert und es wird geprüft, ob das Projekt wirtschaftlich und realistisch durchführbar ist.
+In der Initialisierungsphase wird das Projekt offiziell gestartet. Ziel ist es, eine klare Projektgrundlage zu schaffen. Dazu gehören die Definition von Zielen, die Identifikation von Stakeholdern, die grobe Planung sowie die Erstellung eines Projektauftrags. Risiken und Chancen werden frühzeitig analysiert und es wird geprüft, ob das Projekt wirtschaftlich und realistisch durchführbar ist.
 
 ### 2. Konzeption
 
