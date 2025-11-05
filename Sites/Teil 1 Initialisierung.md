@@ -32,6 +32,7 @@ In diesem Kapitel wird ins Thema der Arbeit eingeführt. Es beschreibt den Hinte
 | 1.0 | 29.10.25 | Laura Dubach | Teil Initialisierung dokumentiert |
 | 1.1 | 31.10.25 | Laura Dubach | Zeitplanung, SCRUM |
 | 1.2 | 03.11.25 | Laura Dubach | Start Teil Konzeption dokumentieren |
+| 1.3 | 05.11.25 | Laura Dubach | Sprint Planning, Verlinkungen der Sites |
 
 # Aufgabenstellung
 

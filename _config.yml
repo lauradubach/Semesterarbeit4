@@ -6,14 +6,14 @@ title: Semesterarbeit 4 | HF Cloud Native Engineer
 email: laura.dubach@edu.tbz.ch 
 
 description: >-
-  "Music Event Finder Microservice" 
+  "Music Event Finder Microservice deployed on Kubernetes Cluster with CI/CD Pipeline" 
 
 # personal stuff
 author: "Laura Dubach"
 github_username:  "lauradubach"
 
 # technical site
-url: "https://github.com/lauradubach/Semesterarbeit3/tree/main"
+url: "https://github.com/lauradubach/Semesterarbeit4/tree/main"
 logo: "/Pictures/Autorin.jpg" 
 favicon_ico: "/Pictures/Autorin.jpg"
 remote_theme: just-the-docs/just-the-docs
