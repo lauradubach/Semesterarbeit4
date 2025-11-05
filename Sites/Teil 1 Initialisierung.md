@@ -195,6 +195,6 @@ E-Mail: philip.stark@tbz.ch
 Damit keine Daten verloren gehen, werde ich alle Dokumente auf meinem OneDrive abspeichern. Durch das Pushen ins Github, wird dies ja auch in der Cloud gesichert. Zusätzlich werde ich die Daten auf einen USB-Stick abspeichern, damit ich im Worstcase Szenario ein Backup besitze.
 
 
-> Back [Page](https://lauradubach.github.io/Semesterarbeit3/)
+> Back [Page](https://lauradubach.github.io/Semesterarbeit4/)
 >
-> Next [Page](https://lauradubach.github.io/Semesterarbeit3/Sites/Teil%202%20Konzeption.html)
+> Next [Page](https://lauradubach.github.io/Semesterarbeit4/Sites/Teil%202%20Konzeption.html)

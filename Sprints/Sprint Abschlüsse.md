@@ -27,14 +27,6 @@
     - [Gewitterwolken](#gewitterwolken-2)
     - [Sandballast](#sandballast-1)
     - [Ausblick](#ausblick-2)
-  - [Sprint Review 4](#sprint-review-4)
-    - [Abgeschlossene Story\`s](#abgeschlossene-storys-3)
-  - [Sprint-Retrospektive 4](#sprint-retrospektive-4)
-    - [Sonnenschein](#sonnenschein-3)
-    - [Auftrieb](#auftrieb-3)
-    - [Gewitterwolken](#gewitterwolken-3)
-    - [Sandballast](#sandballast-2)
-    - [Ausblick](#ausblick-3)
 
 ## Sprint Review 1
 
@@ -97,26 +89,6 @@ Alle vorgesehenen Story`s konnten fristgerecht abgeschlossen werden.
 Folgendes wurde genau umgesetzt:
 
 ## Sprint-Retrospektive 3
-
-### Sonnenschein
-
-### Auftrieb
-
-### Gewitterwolken
-
-### Sandballast
-
-### Ausblick
-
-## Sprint Review 4
-
-### Abgeschlossene Story`s
-
-Alle vorgesehenen Story`s konnten fristgerecht abgeschlossen werden.
-
-Folgendes wurde genau umgesetzt:
-
-## Sprint-Retrospektive 4
 
 ### Sonnenschein
 

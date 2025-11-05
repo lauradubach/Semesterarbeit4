@@ -200,6 +200,6 @@ Die folgende SWOT-Analyse fasst die wesentlichen Einflussfaktoren zusammen:
 
 #### Entscheidungsmatrix
 
-> Back [Page](https://lauradubach.github.io/Semesterarbeit3/Sites/Teil%201%20Initialisierung.html)
+> Back [Page](https://lauradubach.github.io/Semesterarbeit4/Sites/Teil%201%20Initialisierung.html)
 >
-> Next [Page](https://lauradubach.github.io/Semesterarbeit3/Sites/Teil%203%20Realisierung.html)
+> Next [Page](https://lauradubach.github.io/Semesterarbeit4/Sites/Teil%203%20Realisierung.html)

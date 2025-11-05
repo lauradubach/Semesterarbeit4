@@ -1,8 +1,8 @@
 # Semesterarbeit 4 | HF Cloud Native Engineer
 
-![Titelbild](Pictures/Titelbild.jpg)
+![Titelbild](Pictures/Titelbild.png)
 
-> Next [Page](https://lauradubach.github.io/Semesterarbeit3/Sites/Teil%201%20Initialisierung.html)
+> Next [Page](https://lauradubach.github.io/Semesterarbeit4/Sites/Teil%201%20Initialisierung.html)
 
 ## Zusammenfassung
 
@@ -13,15 +13,15 @@ Ziel der Arbeit ist es, eine erweiterbare, moderne und praxisnahe Lösung umzuse
 
 ## Kurze Übersicht
 
-- > [Teil 1](https://lauradubach.github.io/Semesterarbeit3/Sites/Teil%201%20Initialisierung.html) Initialisierung
-- > [Teil 2](https://lauradubach.github.io/Semesterarbeit3/Sites/Teil%202%20Konzeption.html) Konzeption
-- > [Teil 3](https://lauradubach.github.io/Semesterarbeit3/Sites/Teil%203%20Realisierung.html) Realisierung
-- > [Teil 4](https://lauradubach.github.io/Semesterarbeit3/Sites/Teil%204%20Abschluss.html) Abschluss
+- > [Teil 1](https://lauradubach.github.io/Semesterarbeit4/Sites/Teil%201%20Initialisierung.html) Initialisierung
+- > [Teil 2](https://lauradubach.github.io/Semesterarbeit4/Sites/Teil%202%20Konzeption.html) Konzeption
+- > [Teil 3](https://lauradubach.github.io/Semesterarbeit4/Sites/Teil%203%20Realisierung.html) Realisierung
+- > [Teil 4](https://lauradubach.github.io/Semesterarbeit4/Sites/Teil%204%20Abschluss.html) Abschluss
 
 ## Sprints
 
-- > [Sprint Planning](https://lauradubach.github.io/Semesterarbeit3/Sprints/Sprint%20Planning.html)
-- > [Sprint Abschlüsse](https://lauradubach.github.io/Semesterarbeit3/Sprints/Sprint%20Abschl%C3%BCsse.html)
+- > [Sprint Planning](https://lauradubach.github.io/Semesterarbeit4/Sprints/Sprint%20Planning.html)
+- > [Sprint Abschlüsse](https://lauradubach.github.io/Semesterarbeit4/Sprints/Sprint%20Abschl%C3%BCsse.html)
 
 ## Autorin
 
