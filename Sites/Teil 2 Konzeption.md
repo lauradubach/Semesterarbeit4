@@ -37,9 +37,9 @@ Nun gehen wir ins Thema Konzeption über. In diesem Kapitel wird das ganze Proje
 - [Entscheiden](#entscheiden)
   - [SWOT-Analyse](#swot-analyse)
   - [Technologieentscheidungen](#technologieentscheidungen)
-    - [**Wann Minikube nutzen?**](#wann-minikube-nutzen)
-    - [**Wann Docker-Kubernetes nutzen?**](#wann-docker-kubernetes-nutzen)
-    - [**Minikube vs Docker Desktop Kubernetes**](#minikube-vs-docker-desktop-kubernetes)
+    - [Minikube](#minikube)
+    - [Docker-Kubernetes](#docker-kubernetes)
+    - [Minikube vs Docker Desktop Kubernetes](#minikube-vs-docker-desktop-kubernetes)
     - [Virtualisierungs-Treiber auswählen:](#virtualisierungs-treiber-auswählen)
     - [Fazit](#fazit)
       - [Entscheidungsmatrix](#entscheidungsmatrix)
@@ -92,7 +92,6 @@ Ein weiterer, entscheidender Vorteil von SCRUM ist, die enge Einbindung von Feed
 Zusätzlich haben wir im Unterricht SCRUM in der Theorie angeschaut und nun kann ich es im Praktischen lernen umzusetzten. Natürlich wird einiges am Standard Prozess angepasst, da ich das Projekt alleine durchführe. Hier ist zum Beispiel ein Daily SCRUM nicht notwendig.
 
 > (Chat GPT) [Quelle](https://chatgpt.com/share/68230b9b-2d9c-800e-a1eb-64bd9fe8ed96)
-
 
 ## Ausgangslage & Motivation
 
@@ -249,7 +248,6 @@ Jetzt beginnt die eigentliche Umsetzung: Entwicklung, Konfiguration, Tests und I
 
 Das Projekt wird formal beendet. Es finden eine Abnahme, eine Übergabe an den Betrieb sowie ggf. eine Schulung der Nutzer statt. Ausserdem werden Lessons Learned dokumentiert, um aus dem Projekt für zukünftige Vorhaben zu lernen.
 
-
 ## Ist und Soll
 
 ### Ist Zustand
@@ -272,9 +270,9 @@ Die folgende SWOT-Analyse fasst die wesentlichen Einflussfaktoren zusammen:
 
 ## Technologieentscheidungen
 
-### **Wann Minikube nutzen?**
+### Minikube
 
-Nutze **Minikube**, wenn du:
+Nutze Minikube, wenn du:
 
 * Kubernetes standardkonform ausprobieren willst
 * lokale Entwicklung/Tests machst
@@ -284,15 +282,15 @@ Nutze **Minikube**, wenn du:
 
 Minikube ist der übliche Standard für lokale Kubernetes-Umgebungen.
 
-### **Wann Docker-Kubernetes nutzen?**
+### Docker-Kubernetes
 
-Nutze **Docker Kubernetes**, wenn:
+Nutze Docker Kubernetes, wenn:
 
 * du bereits Docker Desktop nutzt und schnell testen willst
 * es dir um eine superschnelle, einfache Installation geht
 * du keine komplexen Cluster-Features brauchst
 
-### **Minikube vs Docker Desktop Kubernetes**
+### Minikube vs Docker Desktop Kubernetes
 
 | Merkmal | Minikube | Docker Desktop K8s |
 | ------- | -------- | ------------------ |

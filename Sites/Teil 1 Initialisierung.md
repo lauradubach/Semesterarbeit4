@@ -196,7 +196,6 @@ Wenn **1 Punkt = 1 Stunde** definiert wird, ergibt sich folgende Zuordnungen:
 ```
 Laura Joana Dubach
 Funktion: Projektleiterin
-P: 079 355 78 24
 Github: lauradubach
 Business E-Mail: laura.dubach@itnetx.ch
 School E-Mail: laura.dubach@edu.tbz.ch
