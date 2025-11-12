@@ -18,6 +18,10 @@ Nun gehen wir ins Thema Konzeption über. In diesem Kapitel wird das ganze Proje
     - [Die Arbeit zeigt konkret, wie ein realer Microservice:](#die-arbeit-zeigt-konkret-wie-ein-realer-microservice)
     - [Dies bringt Vorteile für:](#dies-bringt-vorteile-für)
   - [Seusag](#seusag)
+    - [Included – Bestandteil des Systems](#included--bestandteil-des-systems)
+    - [Components – Infrastrukturkomponenten](#components--infrastrukturkomponenten)
+    - [External – Externe Systeme](#external--externe-systeme)
+    - [Excluded – Nicht im Projektumfang enthalten](#excluded--nicht-im-projektumfang-enthalten)
 - [Planen](#planen)
   - [Zeitplan](#zeitplan)
   - [Meilensteine](#meilensteine)
@@ -33,6 +37,11 @@ Nun gehen wir ins Thema Konzeption über. In diesem Kapitel wird das ganze Proje
 - [Entscheiden](#entscheiden)
   - [SWOT-Analyse](#swot-analyse)
   - [Technologieentscheidungen](#technologieentscheidungen)
+    - [**Wann Minikube nutzen?**](#wann-minikube-nutzen)
+    - [**Wann Docker-Kubernetes nutzen?**](#wann-docker-kubernetes-nutzen)
+    - [**Minikube vs Docker Desktop Kubernetes**](#minikube-vs-docker-desktop-kubernetes)
+    - [Virtualisierungs-Treiber auswählen:](#virtualisierungs-treiber-auswählen)
+    - [Fazit](#fazit)
       - [Entscheidungsmatrix](#entscheidungsmatrix)
 
 
@@ -116,10 +125,8 @@ Für die erfolgreiche Umsetzung des Projektes werden sowohl funktionale als auch
 - Automatisierter Build-, Test- und Deployment-Prozess (CI/CD)
 - Containerisierung mit Docker zur Portabilität
 - Deployment in einem Kubernetes-Cluster
-- Möglichkeit zur Skalierung (Pods/ReplicaSets/Autoscaling)
-- Verwaltung von Konfiguration und Secrets (ConfigMaps & Secrets)
+- Verwaltung von Konfiguration und Secrets
 - Nachvollziehbare Versionierung & Dokumentation
-- Sichere Verarbeitung von Benutzerdaten gemäß modernen Standards
 
 ## Relevanz und Nutzen eines Event-Finders
 
@@ -151,6 +158,72 @@ Durch den Einsatz moderner Kubernetes und DevOps-Technologien entsteht eine zuku
 
 ## Seusag
 
+Das nachfolgende Diagramm zeigt die Systemgrenzen des Projekts Automatisierte Bereitstellung des Microservices „Music Eventfinder“ mittels CI/CD-Pipeline auf Kubernetes.
+Es visualisiert, welche Komponenten Teil des Systems (Included) sind, welche Infrastrukturabhängigkeiten (Components) bestehen, welche externen Systeme (External) angebunden sind, und welche Aspekte bewusst ausgeschlossen (Excluded) wurden.
+
+![Seusag](<../Pictures/Seusag - SA4.png>)
+
+### Included – Bestandteil des Systems
+
+**Visualisierung:**
+Die Architektur des Systems wird über ein grafisches Diagramm dargestellt, das die Beziehungen zwischen Repositories, Container-Registry, Kubernetes-Komponenten und externen APIs visualisiert. Dies unterstützt das Verständnis des Deployments und der Interaktionen der Microservices.
+
+**Versionsverwaltung:**
+Die Versionsverwaltung erfolgt über GitHub. Hier liegen sowohl der Quellcode der Applikation (App Repository) als auch die Deployment-Manifeste (Config Repository). Über CI/CD-Pipelines werden Änderungen automatisch getestet, gebaut und in die Container Registry gepusht.
+
+**Kubernetes Cluster:**
+Das System läuft auf einem lokalen Kubernetes-Cluster, das über Minikube auf Hyper-V bereitgestellt wird. Kubernetes orchestriert die Deployment-Objekte, verwaltet Container, skaliert Services bei Bedarf und sorgt für Ausfallsicherheit.
+
+### Components – Infrastrukturkomponenten
+
+**HyperV:**
+Hyper-V dient als Virtualisierungslösung, auf der Minikube läuft. Dadurch wird eine isolierte und kontrollierte Laufzeitumgebung für das Kubernetes-Cluster bereitgestellt, ohne dass externe Cloud-Ressourcen benötigt werden.
+
+**Ingress:**
+Ingress übernimmt das Routing des eingehenden Traffics innerhalb des Kubernetes-Clusters. Es sorgt dafür, dass Anfragen korrekt an die Musiceventfinder-App weitergeleitet werden, inklusive URL-basiertem Routing und eventueller TLS-Konfigurationen.
+
+**Microservice:**
+Der Musiceventfinder ist der zentrale Microservice des Projekts. Er greift auf externe APIs (z. B. Ticketmaster) zu, verarbeitet die Eventdaten und stellt sie der Applikation für die Anzeige bereit. Er wird über Kubernetes und ArgoCD deployt und ist skalierbar.
+
+**ArgoCD:**
+ArgoCD fungiert als GitOps-Controller. Es überwacht die Konfigurations-Repositories, zieht automatisch die aktuellsten Deployment-Manifeste und synchronisiert diese mit dem Cluster. So wird ein kontinuierliches, versionskontrolliertes Deployment gewährleistet.
+
+**App Repository:**
+Das App Repository in GitHub enthält den Quellcode der Musiceventfinder-Applikation inklusive aller notwendigen CI/CD-Pipelines. Änderungen hier lösen automatisch Build- und Deployment-Prozesse aus.
+
+**Config Repository:**
+Im Config Repository werden alle Kubernetes-Manifeste abgelegt, die das Deployment der Applikation beschreiben (z. B. Deployment, Service, Ingress). ArgoCD verwendet dieses Repository als Quelle für das Cluster-Deployment.
+
+**Container Registry:**
+Die Container Registry speichert die gebauten Docker-Images der Applikation. Die CI-Pipeline aktualisiert bei jeder Änderung die Images, und ArgoCD deployt diese in das Kubernetes-Cluster.
+
+### External – Externe Systeme
+
+**Ticketmaster API:**
+Die Musiceventfinder-App greift auf die Ticketmaster API zu, um aktuelle Eventdaten abzurufen. Diese Integration ermöglicht es, Nutzern eine aktuelle und umfangreiche Übersicht von Musikveranstaltungen zu bieten, ohne dass die Daten selbst gepflegt werden müssen.
+
+### Excluded – Nicht im Projektumfang enthalten
+
+**Echtzeitverarbeitung:**
+Die Eventdaten werden nicht in Echtzeit gestreamt oder aktualisiert. Es findet keine kontinuierliche Datenverarbeitung statt.
+
+**Rechtekonzept:**
+Das System implementiert keine differenzierten Benutzerrollen oder Berechtigungsstufen. Basis-Authentifizierung ist vorhanden, aber keine fein granulierte Zugriffskontrolle.
+
+**Analytics & Monitoring:**
+Es erfolgt keine systemweite Auswertung von Nutzungsstatistiken oder Performance-Kennzahlen. Monitoring-Tools wie Prometheus oder Grafana sind nicht integriert.
+
+**Support:**
+Ein Benutzer-Support (z. B. Ticketsystem oder Chat-Support) wurde nicht umgesetzt, da es sich um einen Prototypen handelt.
+
+**Eigenentwicklung von Eventdaten:**
+Das System erstellt oder verwaltet keine eigenen Events. Es konsumiert ausschließlich Informationen aus externen APIs.
+
+**Cloud Deployment:**
+Das System wird nicht in einer öffentlichen Cloud (z. B. AWS, Azure, GCP) betrieben. Stattdessen erfolgt das Deployment vollständig lokal auf Hyper-V/Minikube. Dies aus kostengründen.
+
+> (Chat GPT) [Quelle](https://chatgpt.com/share/69145d5b-1d28-8007-a9ab-019f02a428de)
+
 # Planen
 
 Hier werde ich das ganze Projekt planen. Es wird ein Zeitplan erstellt, wann welche Tätigkeiten fällig sind und die Meilensteine sind genau beschrieben.
@@ -176,6 +249,7 @@ Jetzt beginnt die eigentliche Umsetzung: Entwicklung, Konfiguration, Tests und I
 
 Das Projekt wird formal beendet. Es finden eine Abnahme, eine Übergabe an den Betrieb sowie ggf. eine Schulung der Nutzer statt. Ausserdem werden Lessons Learned dokumentiert, um aus dem Projekt für zukünftige Vorhaben zu lernen.
 
+
 ## Ist und Soll
 
 ### Ist Zustand
@@ -197,6 +271,61 @@ Im Kapitel Entscheiden werden die Produkte die zur Auswahl stehen verglichen. Es
 Die folgende SWOT-Analyse fasst die wesentlichen Einflussfaktoren zusammen:
 
 ## Technologieentscheidungen
+
+### **Wann Minikube nutzen?**
+
+Nutze **Minikube**, wenn du:
+
+* Kubernetes standardkonform ausprobieren willst
+* lokale Entwicklung/Tests machst
+* das Verhalten eines echten Clusters möglichst genau simulieren möchtest
+* Add-ons (Ingress, Dashboard, Metrics-Server etc.) benötigst
+* verschiedene Container-Runtimes testen möchtest (Docker, CRI-O, containerd)
+
+Minikube ist der übliche Standard für lokale Kubernetes-Umgebungen.
+
+### **Wann Docker-Kubernetes nutzen?**
+
+Nutze **Docker Kubernetes**, wenn:
+
+* du bereits Docker Desktop nutzt und schnell testen willst
+* es dir um eine superschnelle, einfache Installation geht
+* du keine komplexen Cluster-Features brauchst
+
+### **Minikube vs Docker Desktop Kubernetes**
+
+| Merkmal | Minikube | Docker Desktop K8s |
+| ------- | -------- | ------------------ |
+| Echtheit des Kubernetes-Verhaltens sehr hoch | begrenzt | |
+| Add-ons / Erweiterbarkeit viele Optionen | eingeschränkt | |
+| Performance | gut, aber VM nötig | sehr gut (native Docker-Engine) |
+| Einrichtung | etwas mehr Aufwand | extrem einfach |
+| Lernfaktor für echtes K8s hoch | begrenzt | |
+
+### Virtualisierungs-Treiber auswählen: 
+
+**Hyper-V vs Docker Desktop – Minikube auf Windows**
+
+| Feature / Kriterium | Hyper-V | Docker Desktop | Kommentar |
+|---------------------|---------|----------------|-----------|
+| **Integration** | Direkt in Windows integriert | Läuft auf Windows über eigene VM | Hyper-V stabiler, weniger Abhängigkeiten |
+| **Installation / Setup** | Einmaliger Setup-Aufwand für Switch | Sehr einfach, nur Docker Desktop installieren | Hyper-V Setup lohnt sich langfristig für Multi-Node & Tests |
+| **Ressourcenkontrolle** | CPU, RAM, Storage pro VM exakt konfigurierbar | Limitierungen durch Docker Desktop Einstellungen | Bessere Performance-Kontrolle für Tests |
+| **Isolation** | Voll isolierte VM | Docker-Container teilen Host-Kernel | Hyper-V sicherer, weniger System-Risiko |
+| **Multi-Node Cluster** | Einfach weitere VMs hinzufügen | Komplex / limitiert | Hyper-V realistischere Cluster-Simulation |
+| **Netzwerkoptionen** | NAT, extern, intern, flexibel | Begrenzte Netzwerkeinstellungen | Hyper-V besser für fortgeschrittene Szenarien |
+| **Snapshots / Backups** | Snapshots direkt möglich | Nur über Docker Desktop-Export | Hyper-V erlaubt gefahrloses Experimentieren |
+| **Geschwindigkeit (Startup)** | VM startet etwas langsamer | Schnellere Container-Starts | Startup-Nachteil minimal, Vorteil langfristig |
+| **Kubernetes Feature Support** | Vollständig | Eingeschränkt | Hyper-V näher am echten K8s |
+| **Abhängigkeiten** | Keine Docker-Abhängigkeit | Docker muss laufen | Hyper-V unabhängig von Drittsoftware |
+| **GUI / Dashboard** | Minikube Dashboard via Browser | Docker Desktop hat eigenes Dashboard | Docker leichter für Anfänger, Hyper-V trotzdem brauchbar |
+
+### Fazit
+
+- **Hyper-V gewinnt bei:** Stabilität, Flexibilität, Multi-Node, Isolation, Ressourcenmanagement → ideal für echtes Dev/Testing Cluster.  
+- **Docker Desktop punktet bei:** Einfachheit, schnelle lokale Tests, minimale Einrichtung → gut für „schnell starten“.  
+
+> (Chat GPT) [Quelle](https://chatgpt.com/share/690b5e67-32b4-8007-999a-8bbbb27517c1)
 
 #### Entscheidungsmatrix
 

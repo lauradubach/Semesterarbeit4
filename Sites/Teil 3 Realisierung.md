@@ -4,6 +4,7 @@ Kommen wir zur Umsetzung des Projektes. In diesem Teil wird genau beschrieben, w
 
 - [Teil 3 Realisieren](#teil-3-realisieren)
 - [Realisieren](#realisieren)
+  - [Architekturdiagramm](#architekturdiagramm)
   - [So funktionierts](#so-funktionierts)
     - [Überblick](#überblick)
     - [Komponenten im Detail](#komponenten-im-detail)
@@ -23,6 +24,54 @@ Kommen wir zur Umsetzung des Projektes. In diesem Teil wird genau beschrieben, w
 # Realisieren
 
 Nun wird die Realisierung beschrieben. Die Umsetzung der Arbeit wird gezeigt inklusive Bilder der Produktiven Umgebung.
+
+## Architekturdiagramm
+
+```mermaid
+graph TB
+    subgraph Version["Versionsverwaltung"]
+        A[GitHub<br/>App Repository<br/>Quellcode + CI/CD]
+        A2[GitHub<br/>Config Repository<br/>Deployment YAMLs]
+        CR[GitHub Container Registry<br/>Docker Images]
+    end
+    
+    subgraph Virt["Virtualisierung"]
+        E[Hyper-V<br/>Laufzeitumgebung für Minikube]
+    end
+    
+    subgraph K8s["Kubernetes Cluster"]
+        B[Argo CD<br/>GitOps Controller]
+        H[Ingress<br/>Traffic-Routing]
+        F[Musiceventfinder App<br/>Externe API-Anbindung]
+    end
+    
+    G[Externe APIs<br/>Music Event Services]
+    
+    A -->|CI Pipeline baut| CR
+    A -.->|Updated Image-Tags in| A2
+    B -->|Pullt Manifeste aus| A2
+    B -->|Pullt Images aus| CR
+    B -->|Deployed| F
+    H -->|Leitet Traffic zu| F
+    F <-->|Kommuniziert mit| G
+    E -.->|Host für| K8s
+    
+    classDef github fill:#e1f5ff,stroke:#0366d6,stroke-width:1px,color:#222222
+    classDef registry fill:#e1ffe1,stroke:#28a745,stroke-width:1px,color:#222222
+    classDef gitops fill:#fff4e1,stroke:#f9826c,stroke-width:1px,color:#222222
+    classDef hyperv fill:#f5e1ff,stroke:#8b5cf6,stroke-width:1px,color:#222222
+    classDef app fill:#ffebe1,stroke:#dc3545,stroke-width:1px,color:#222222
+    classDef external fill:#f0f0f0,stroke:#6c757d,stroke-width:1px,color:#222222
+    classDef ingress fill:#fffacd,stroke:#ffc107,stroke-width:1px,color:#222222
+    
+    class A,A2 github
+    class CR registry
+    class B gitops
+    class E hyperv
+    class F app
+    class G external
+    class H ingress
+```
 
 ## So funktionierts
 

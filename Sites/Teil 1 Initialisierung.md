@@ -19,6 +19,8 @@ In diesem Kapitel wird ins Thema der Arbeit eingeführt. Es beschreibt den Hinte
     - [Deployment](#deployment)
     - [Dokumentation](#dokumentation)
     - [Review \& Akzeptanz](#review--akzeptanz)
+  - [Fibonacci](#fibonacci)
+    - [Meine Schätzung](#meine-schätzung)
 - [Projektorganisation](#projektorganisation)
   - [Beteiligte Personen](#beteiligte-personen)
     - [Kanditatin](#kanditatin)
@@ -33,6 +35,7 @@ In diesem Kapitel wird ins Thema der Arbeit eingeführt. Es beschreibt den Hinte
 | 1.1 | 31.10.25 | Laura Dubach | Zeitplanung, SCRUM |
 | 1.2 | 03.11.25 | Laura Dubach | Start Teil Konzeption dokumentieren |
 | 1.3 | 05.11.25 | Laura Dubach | Sprint Planning, Verlinkungen der Sites |
+| 1.4 | 12.11.25 | Laura Dubach | Fibonacci defininieren, Seusag, architekturdiagramm erstellen |
 
 # Aufgabenstellung
 
@@ -105,15 +108,15 @@ Die Arbeit basiert auf dem bereits bestehenden Music Eventfinder-Microservice. E
 
 ## Werkzeuge
 
-| Kategorie            | Werkzeuge / Technologien                             |
-| -------------------- | ---------------------------------------------------- |
-| Versionsverwaltung   | Git                                                  |
-| Containerisierung    | Docker                                               |
-| Orchestrierung       | Kubernetes                                           |
-| CI/CD                | GitHub Actions / GitLab CI                           |
-| Agile Planung        | Jira (SCRUM)                                         |
-| Entwicklung          | Visual Studio Code                                   |
-| Testing              | Kubernetes Dashboard, kubectl, Unit-Tests            |
+| Kategorie            | Werkzeuge / Technologien                  |
+| -------------------- | ------------------------------------------|
+| Versionsverwaltung   | Git                                       |
+| Containerisierung    | Docker                                    |
+| Orchestrierung       | Kubernetes                                |
+| CI/CD                | GitHub Actions / GitLab CI                |
+| Agile Planung        | Jira (SCRUM)                              |
+| Entwicklung          | Visual Studio Code                        |
+| Testing              | Kubernetes Dashboard, kubectl, Unit-Tests |
 
 ## SCRUM-Überblick
 
@@ -161,6 +164,28 @@ Ein Product Backlog Item, gilt als "Done", wenn **alle** folgenden Kriterien erf
 - Die Sprint Reviews sind alle Dokumentiert
 - Die Reflexion ist verständlich.
 - Die Funktionalität ist im Product Backlog als „Done“ markiert.
+
+## Fibonacci
+
+Die **Fibonacci-Folge** ist eine unendliche Zahlenreihe, bei der jede Zahl die Summe der beiden vorhergehenden Zahlen ist. Die Reihe beginnt üblicherweise mit 0 und 1, sodass die Folge lautet:
+
+
+In der agilen Softwareentwicklung wird das Fibonacci-Prinzip häufig für die Schätzung des Aufwands von Aufgaben verwendet. Dabei stehen die Zahlen der Fibonacci-Reihe (1, 2, 3, 5, 8, …) als relative Maßzahlen für den geschätzten Arbeitsaufwand.
+
+### Meine Schätzung
+
+Wenn **1 Punkt = 1 Stunde** definiert wird, ergibt sich folgende Zuordnungen:
+
+| Fibonacci-Punkt | Aufwand in Stunden |
+|-----------------|-----------------|
+| 1               | 1               |
+| 2               | 2               |
+| 3               | 3               |
+| 5               | 5               |
+| 8               | 8               |
+| 13              | 13              |
+
+> (Chat GPT) [Quelle](https://chatgpt.com/share/69145168-8c68-8007-82a2-a49cbda92bb8)
 
 # Projektorganisation
 

@@ -57,6 +57,14 @@ Im Kapitel Auswerten wird der Abschluss des Projektes beschrieben. Es wird Zusam
 
 ## Quellen
 
+05.11.25:
+> (Chat GPT) [Quelle](https://chatgpt.com/share/6908ec06-4a2c-8007-834a-6013e399ba13)
+> (Chat GPT) [Quelle](https://chatgpt.com/share/690b5e67-32b4-8007-999a-8bbbb27517c1)
+
+12.11.25:
+> (Chat GPT) [Quelle](https://chatgpt.com/share/69145d5b-1d28-8007-a9ab-019f02a428de)
+> (Chat GPT) [Quelle](https://chatgpt.com/share/69145168-8c68-8007-82a2-a49cbda92bb8)
+
 
 > Back [Page](https://lauradubach.github.io/Semesterarbeit4/Sites/Teil%203%20Realisierung.html)
 >
