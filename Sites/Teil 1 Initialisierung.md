@@ -36,6 +36,7 @@ In diesem Kapitel wird ins Thema der Arbeit eingeführt. Es beschreibt den Hinte
 | 1.2 | 03.11.25 | Laura Dubach | Start Teil Konzeption dokumentieren |
 | 1.3 | 05.11.25 | Laura Dubach | Sprint Planning, Verlinkungen der Sites |
 | 1.4 | 12.11.25 | Laura Dubach | Fibonacci defininieren, Seusag, architekturdiagramm erstellen |
+| 1.5 | 18.11.25 | Laura Dubach | Risikomatrix, Entscheidungsmatrix erstellen, Ist&Soll Zustand beschreiben, SWOT Analyse |
 
 # Aufgabenstellung
 

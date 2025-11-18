@@ -42,7 +42,12 @@ Nun gehen wir ins Thema Konzeption über. In diesem Kapitel wird das ganze Proje
     - [Minikube vs Docker Desktop Kubernetes](#minikube-vs-docker-desktop-kubernetes)
     - [Virtualisierungs-Treiber auswählen:](#virtualisierungs-treiber-auswählen)
     - [Fazit](#fazit)
-      - [Entscheidungsmatrix](#entscheidungsmatrix)
+    - [Entscheidungsmatrix](#entscheidungsmatrix)
+      - [Minikube vs Docker Desktop Kubernetes](#minikube-vs-docker-desktop-kubernetes-1)
+      - [Hyper-V vs Docker Desktop](#hyper-v-vs-docker-desktop)
+      - [Gesamt-Entscheidungsmatrix](#gesamt-entscheidungsmatrix)
+      - [Fazit der Entscheidungsmatrix](#fazit-der-entscheidungsmatrix)
+      - [Entscheidung](#entscheidung)
 
 
 # Informieren
@@ -250,15 +255,65 @@ Das Projekt wird formal beendet. Es finden eine Abnahme, eine Übergabe an den B
 
 ## Ist und Soll
 
+![Ist&Soll](../Pictures/Ist&Soll.png)
+
 ### Ist Zustand
+
+Derzeit läuft die Flask-App lokal in einem Docker-Container. Es existiert noch keine Kubernetes-Umgebung und keine automatisierte Deployment-Pipeline. Hyper-V und Minikube sind nicht eingerichtet, Ingress für Routing ist noch nicht vorhanden, und ArgoCD wurde noch nicht integriert.
 
 ### Soll Zustand
 
+Ziel ist die Umsetzung einer modularen Microservice-Architektur, in der die Flask-App containerisiert läuft und lokal auf einem Minikube-Kubernetes-Cluster betrieben wird. Hyper-V stellt die Virtualisierung bereit, Ingress sorgt für sauberes Routing, und ArgoCD automatisiert die Deployments. Externe APIs wie Ticketmaster werden zuverlässig eingebunden, und die Versionsverwaltung erfolgt sauber getrennt zwischen App- und Config-Repositories. Die Architektur soll skalierbar, wartbar und erweiterbar sein, um künftige Microservices problemlos integrieren zu können.
+
+> (Chat GPT) [Quelle](https://chatgpt.com/share/691c5c94-df1c-8007-92fd-93219b75bf52)
+
 ## Risikomatrix
+
+![Risikomatrix](<../Pictures/Risikomatrix S4.jpg>)
+
+Wahrscheinlichkeit (W):
+1 = niedrig
+2 = mittel
+3 = hoch
+
+Auswirkung (A):
+1 = gering
+2 = mittel
+3 = hoch
+4 = sehr hoch
+
+Risikoscore: W × A
+
+| Score | Kategorie |
+| ----- | ----------|
+| 1–3   | Niedrig   |
+| 4–6   | Mittel    |
+| 7–9   | Hoch      |
+| 10–12 | Sehr hoch |
+
+| Risiko | Beschreibung | W | A | Score | Kategorie | Gegenmaßnahmen |
+| ------ | ------------ | - | - | ----- | --------- | -------------- |
+| **Hyper-V Ressourcenengpass** | VM benötigt mehr CPU/RAM als geplant, Cluster wird instabil | 2 | 3 | 6 | Mittel | Ressourcenplanung, Limits setzen, Monitoring |
+| **Kubernetes Instabilität** | Fehlerhafte Deployments, CrashLoopBackoffs durch falsche Manifeste | 2 | 3 | 6 | Mittel | Tests lokal, Liveness/Readiness Probes, ArgoCD Sync-Prüfung |
+| **ArgoCD Fehlkonfiguration** | Fehlendes Sync- oder Health-Monitoring führt zu fehlerhaften Releases | 2 | 3 | 6 | Mittel | ArgoCD Policies, automatische Health-Checks |
+| **Externe Ticketmaster-API nicht erreichbar** | API Down, Rate Limit, Timeout → Microservice liefert keine Daten | 3 | 4 | 12 | Sehr hoch | Caching, Retry-Mechanismen, Circuit Breaker, Fehlermeldungen |
+| **Ingress Routing Fehler** | Zugriff auf App nicht möglich durch falsche Regeln | 2 | 2 | 4 | Mittel | Ingress-Tests, Logs prüfen, standardisierte Routen |
+| **Container Build-Fehler** | Image baut nicht oder enthält Bugs | 2 | 2 | 4 | Mittel | CI-Tests, Linting, Build-Pipeline automatisieren |
+| **Versionskonflikte/Dependency Bugs** | Bibliotheken oder Images inkompatibel | 1 | 2 | 2 | Niedrig | Versionsmanagement, Lockfiles |
+| **Netzwerkfehler im Cluster** | Services nicht erreichbar oder DNS bricht | 1 | 3 | 3 | Niedrig/Mittel | CoreDNS-Monitoring, kubectl describe/logs prüfen |
+| **Repo-Strukturfehler (App/Config)** | ArgoCD kann Manifeste nicht finden oder falsch anwenden | 1 | 2 | 2 | Niedrig | Klare Repo-Struktur (App Repo / Config Repo) |
+
+> (Chat GPT) [Quelle](https://chatgpt.com/share/691c4eab-5f0c-8007-8817-4b7039fabc74)
 
 ## Implementierungsplan
 
 Hier wird grob dargestellt, wie in diesem Projekt vorgegangen wird.
+
+![Implementierungsplan](../Pictures/Implementierungsplan.png)
+
+Der Implementierungsplan für den Music Event Finder Microservice gliedert sich in mehrere aufeinander aufbauende Schritte, die für die erfolgreiche Umsetzung des Projekts notwendig sind. Jeder Schritt ist essenziell, da er die Grundlage für den nächsten bildet. Durch diese strukturierte Vorgehensweise wird sichergestellt, dass das System nicht nur funktionsfähig ist, sondern auch sicher, wartbar und erweiterbar bleibt. Kein Schritt kann ausgelassen werden, da nur das Zusammenspiel aller Maßnahmen die gewünschte Qualität und Zuverlässigkeit des Gesamtsystems gewährleistet.
+
+> (Chat GPT) [Quelle](https://chatgpt.com/share/691c632c-1b80-8007-9f6a-b2ee70f95a04)
 
 # Entscheiden
 
@@ -267,6 +322,8 @@ Im Kapitel Entscheiden werden die Produkte die zur Auswahl stehen verglichen. Es
 ## SWOT-Analyse
 
 Die folgende SWOT-Analyse fasst die wesentlichen Einflussfaktoren zusammen:
+
+![SWOT](../Pictures/SWOT.png)
 
 ## Technologieentscheidungen
 
@@ -325,7 +382,70 @@ Nutze Docker Kubernetes, wenn:
 
 > (Chat GPT) [Quelle](https://chatgpt.com/share/690b5e67-32b4-8007-999a-8bbbb27517c1)
 
-#### Entscheidungsmatrix
+### Entscheidungsmatrix
+
+#### Minikube vs Docker Desktop Kubernetes
+
+| **Kriterium / Feature**            | **Minikube**                                        | **Docker Desktop Kubernetes**                |
+| ---------------------------------- | --------------------------------------------------- | -------------------------------------------- |
+| Echtheit des Kubernetes-Verhaltens | ✓ sehr hoch                                         | ~ begrenzt                                   |
+| Add-ons / Erweiterbarkeit          | ✓ viele Optionen                                    | ✗ eingeschränkt                              |
+| Performance                        | ~ gut, benötigt VM                                  | ✓ sehr gut (native Docker Engine)            |
+| Einrichtung                        | ~ etwas Aufwand                                     | ✓ extrem einfach                             |
+| Lernfaktor für echtes Kubernetes   | ✓ hoch                                              | ~ begrenzt                                   |
+| Nutzungsszenario                   | Entwicklung, Tests, realistische Cluster-Simulation | Schnelle lokale Tests, minimaler Aufwand     |
+| Flexibilität (Container-Runtime)   | ✓ Docker, CRI-O, containerd                         | ✗ nur Docker                                 |
+| Abhängigkeiten                     | unabhängig von Docker Desktop                       | abhängig von Docker Desktop                  |
+| **Empfehlung**                     | Für realistische Kubernetes-Workloads               | Für schnelle, einfache Demo-/Test-Umgebungen |
+
+#### Hyper-V vs Docker Desktop
+
+| **Feature / Kriterium**    | **Hyper-V (für Minikube)**                  | **Docker Desktop Backend**            |
+| -------------------------- | ------------------------------------------- | ------------------------------------- |
+| Integration in Windows     | ✓ direkt integriert                         | ~ eigene VM über Docker Desktop       |
+| Installation / Setup       | ~ einmaliger Setup-Aufwand                  | ✓ sehr einfach                        |
+| Ressourcenkontrolle        | ✓ exakte CPU/RAM/Storage-Zuweisung          | ~ begrenzt durch Docker-Einstellungen |
+| Isolation                  | ✓ vollständige VM-Isolation                 | ✗ Container teilen Host-Kernel        |
+| Multi-Node Cluster         | ✓ einfach und realistisch                   | ✗ kaum praktikabel                    |
+| Netzwerkoptionen           | ✓ sehr flexibel (NAT, extern, intern)       | ✗ eingeschränkt                       |
+| Snapshots / Backups        | ✓ Hyper-V Snapshots möglich                 | ✗ nur über Docker-Export              |
+| Geschwindigkeit (Startup)  | ~ etwas langsamer                           | ✓ sehr schnell                        |
+| Kubernetes Feature Support | ✓ vollständig                               | ~ eingeschränkt                       |
+| Abhängigkeiten             | unabhängig von Docker                       | erfordert Docker Desktop              |
+| GUI / Dashboard            | Minikube Dashboard                          | Docker Desktop Dashboard              |
+| **Empfehlung**             | Für realistische Tests & Cluster-Simulation | Für einfache lokale Nutzung           |
+
+#### Gesamt-Entscheidungsmatrix
+
+| **Entscheidungsszenario**            | **Minikube** | **Docker K8s** | **Hyper-V** | **Docker Desktop** |
+| ------------------------------------ | ------------ | -------------- | ----------- | ------------------ |
+| Echtes Kubernetes-Feeling            | ✓            | ~              | ✓           | ~                  |
+| Realistische Cluster-Simulation      | ✓            | ✗              | ✓           | ✗                  |
+| Multi-Node möglich                   | ✓            | ✗              | ✓           | ✗                  |
+| Einfache Installation                | ~            | ✓              | ~           | ✓                  |
+| Add-ons nutzbar (Ingress, Metrics …) | ✓            | ~              | ✓           | ~                  |
+| Ressourcen- & Performance-Kontrolle  | ~            | ✓              | ✓           | ~                  |
+| Für Anfänger geeignet                | ~            | ✓              | ~           | ✓                  |
+| Für langfristiges Dev/Testing        | ✓            | ✗              | ✓           | ✗                  |
+| Unabhängig von Docker Desktop        | ✓            | ✗              | ✓           | ✗                  |
+| Sicherheit / Isolation               | ✓            | ~              | ✓           | ✗                  |
+
+####  Fazit der Entscheidungsmatrix
+
+**Beste Kombination für realistische Entwicklung**
+
+**Minikube + Hyper-V**
+Bietet hohe Stabilität, Flexibilität, Multi-Node-Support, Isolation und realistische Kubernetes-Funktionalität.
+
+**Beste Kombination für schnelle und einfache Tests**
+
+**Docker Desktop + Docker Kubernetes**
+Minimaler Setup-Aufwand, ideal für schnelle lokale Tests, jedoch technisch weniger nah am echten Kubernetes.
+
+#### Entscheidung
+Da ich das Projekt so realistisch wie möglich umsetzten möchte, werde ich mich für die Variante Minikube + Hyper-V entscheiden.
+
+> (Chat GPT) [Quelle][text](https://chatgpt.com/share/691c4131-e78c-8007-b99b-0448ad90d2e2)
 
 > Back [Page](https://lauradubach.github.io/Semesterarbeit4/Sites/Teil%201%20Initialisierung.html)
 >
