@@ -13,6 +13,7 @@ Kommen wir zur Umsetzung des Projektes. In diesem Teil wird genau beschrieben, w
   - [API](#api)
   - [Github Secrets](#github-secrets)
   - [Entwicklung](#entwicklung)
+    - [Minikube mit Hyper-V driver](#minikube-mit-hyper-v-driver)
   - [Aufgetretene Probleme](#aufgetretene-probleme)
   - [Fallbacksolution](#fallbacksolution)
 - [Kontrollieren](#kontrollieren)
@@ -88,6 +89,72 @@ graph TB
 ## Github Secrets
 
 ## Entwicklung
+
+### Minikube mit Hyper-V driver
+
+Treiber setzten:
+`minikube config set driver hyperv`
+
+Cluster starten:
+` minikube start -p c1 --driver=hyperv`
+
+löschen des Clusters falls nötig:
+`minikube delete -p=c1`
+
+Namespace wechseln:
+`kubectl config set-context --current --namespace=<name>`
+
+![profilelist](../Pictures/profilelist.png)
+
+![pods](../Pictures/pods.png)
+
+Ingress Addon aktivieren:
+`minikube addons enable ingress -p c1`
+
+Argocd:
+```bash
+kubectl create namespace argocd
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+```
+
+Port foward für kurzen test:
+`kubectl -n argocd port-forward svc/argocd-server 8080:443`
+
+![argocd](../Pictures/testargocd.png)
+  
+`kubectl apply -f Minikube-Config/argocd/application.yaml -n argocd`
+
+In Argocd alles einrichten:
+
+Access auf das Image gewährleisten:
+
+Token erstellen und hinterlegen:
+
+```
+kubectl create secret docker-registry ghcr-secret \
+  --docker-server=ghcr.io \
+  --docker-username=<GITHUB_USERNAME> \
+  --docker-password=<PERSONAL_ACCESS_TOKEN> \
+  --docker-email=<EMAIL> \
+  --namespace default \
+  --dry-run=client -o yaml > ghcr-secret.yaml
+```
+
+Auf Kubernetes Deployen:
+
+` kubectl apply -f ghcr-secret.yaml`
+
+Im Argocd Projekt erstellen und Syncen:
+
+![argocdprojekt](../Pictures/argocdprojekt.png)
+
+Secrets:
+
+Ticketmaster API:
+![secretapi](../Pictures/secretapi.png)
+
+Image Zugang:
+![imagekey](../Pictures/imagekey.png)
 
 ## Aufgetretene Probleme
 

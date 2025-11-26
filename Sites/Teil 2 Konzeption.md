@@ -419,16 +419,16 @@ Nutze Docker Kubernetes, wenn:
 
 | **Entscheidungsszenario**            | **Minikube** | **Docker K8s** | **Hyper-V** | **Docker Desktop** |
 | ------------------------------------ | ------------ | -------------- | ----------- | ------------------ |
-| Echtes Kubernetes-Feeling            | ✓            | ~              | ✓           | ~                  |
-| Realistische Cluster-Simulation      | ✓            | ✗              | ✓           | ✗                  |
-| Multi-Node möglich                   | ✓            | ✗              | ✓           | ✗                  |
-| Einfache Installation                | ~            | ✓              | ~           | ✓                  |
-| Add-ons nutzbar (Ingress, Metrics …) | ✓            | ~              | ✓           | ~                  |
-| Ressourcen- & Performance-Kontrolle  | ~            | ✓              | ✓           | ~                  |
-| Für Anfänger geeignet                | ~            | ✓              | ~           | ✓                  |
-| Für langfristiges Dev/Testing        | ✓            | ✗              | ✓           | ✗                  |
-| Unabhängig von Docker Desktop        | ✓            | ✗              | ✓           | ✗                  |
-| Sicherheit / Isolation               | ✓            | ~              | ✓           | ✗                  |
+| Echtes Kubernetes-Feeling            | ✓            | ~              | ✓           | ~                 |
+| Realistische Cluster-Simulation      | ✓            | ✗              | ✓           | ✗                |
+| Multi-Node möglich                   | ✓            | ✗              | ✓           | ✗                |
+| Einfache Installation                | ~            | ✓              | ~           | ✓                 |
+| Add-ons nutzbar (Ingress, Metrics …) | ✓            | ~              | ✓           | ~                 |
+| Ressourcen- & Performance-Kontrolle  | ~            | ✓              | ✓           | ~                 |
+| Für Anfänger geeignet                | ~            | ✓              | ~           | ✓                 |
+| Für langfristiges Dev/Testing        | ✓            | ✗              | ✓           | ✗                |
+| Unabhängig von Docker Desktop        | ✓            | ✗              | ✓           | ✗                |
+| Sicherheit / Isolation               | ✓            | ~              | ✓           | ✗                |
 
 ####  Fazit der Entscheidungsmatrix
 
