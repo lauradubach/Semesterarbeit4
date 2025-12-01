@@ -37,6 +37,8 @@ In diesem Kapitel wird ins Thema der Arbeit eingeführt. Es beschreibt den Hinte
 | 1.3 | 05.11.25 | Laura Dubach | Sprint Planning, Verlinkungen der Sites |
 | 1.4 | 12.11.25 | Laura Dubach | Fibonacci defininieren, Seusag, architekturdiagramm erstellen |
 | 1.5 | 18.11.25 | Laura Dubach | Risikomatrix, Entscheidungsmatrix erstellen, Ist&Soll Zustand beschreiben, SWOT Analyse |
+| 1.6 | 26.11.25 | Laura Dubach | Teil Realisierung starten und erste Teile dokumentieren |
+| 1.7 | 01.12.25 | Laura Dubach | Sprint Abschluss & Retro von Sprint 1 erledigen |
 
 # Aufgabenstellung
 
