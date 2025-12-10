@@ -9,11 +9,11 @@ Kommen wir zur Umsetzung des Projektes. In diesem Teil wird genau beschrieben, w
     - [Überblick](#überblick)
     - [Komponenten im Detail](#komponenten-im-detail)
       - [Zusammenspiel der Komponenten](#zusammenspiel-der-komponenten)
-  - [Datenbank](#datenbank)
-  - [API](#api)
-  - [Github Secrets](#github-secrets)
   - [Entwicklung](#entwicklung)
     - [Minikube mit Hyper-V driver](#minikube-mit-hyper-v-driver)
+      - [Hilfreiche Kommandos:](#hilfreiche-kommandos)
+      - [Umsetzung](#umsetzung)
+      - [In Argocd alles einrichten:](#in-argocd-alles-einrichten)
   - [Aufgetretene Probleme](#aufgetretene-probleme)
   - [Fallbacksolution](#fallbacksolution)
 - [Kontrollieren](#kontrollieren)
@@ -78,55 +78,111 @@ graph TB
 
 ### Überblick
 
+Der Microservice Musiceventfinder ist in Flask (Python) implementiert und wird als Docker-Image in der GitHub Container Registry verwaltet. Die Anwendung wird über Argo CD in einem Kubernetes-Cluster (Minikube) deployed. Externe Music-Event-APIs liefern die Eventdaten. Für die lokale Entwicklung wird eine Hyper-V-Umgebung genutzt, während CI/CD-Pipelines die automatische Bereitstellung und Aktualisierung des Images sicherstellen.
+
 ### Komponenten im Detail
- 
+
+1. Backend (Flask + Python)
+   
+  - Implementiert eine REST-API zur:
+    - Abfrage und Anzeige von Musik-Events über externe APIs.
+    - Verwaltung von Favoriten oder Nutzerinteraktionen (CRUD).
+  - Verarbeitet die API-Daten und stellt sie den Nutzern bereit.
+
+2. Docker-Image (GitHub Container Registry)
+
+  - Das fertige Image wird in GitHub abgelegt.
+  - Enthält die gesamte Laufzeitumgebung der Flask-App.
+  - Argo CD zieht dieses Image und deployed es in das Kubernetes-Cluster.
+
+3. Kubernetes Cluster (Minikube)
+
+  - Orchestriert die Container und sorgt für Skalierbarkeit sowie Ausfallsicherheit.
+  - Argo CD überwacht die Manifeste im Config Repository und sorgt für ein automatisches Deployment der neuesten Images.
+  - Ingress routet den Benutzer-Traffic zur Musiceventfinder App.
+
+4. Externe Music-Event-APIs
+
+  - Liefern aktuelle Veranstaltungsinformationen.
+  - Das Backend ruft diese Daten ab, verarbeitet sie und stellt sie für die Endnutzer bereit.
+
+5. Versionsverwaltung & CI/CD (GitHub)
+
+  - App Repository enthält Quellcode und CI-Pipeline.
+  - Config Repository enthält Deployment-Manifeste für Argo CD.
+  - CI-Pipeline baut das Docker-Image und speichert es in der GitHub Container Registry.
+  - Argo CD übernimmt anschließend das Deployment des fertigen Images.
+
+6. Virtualisierung (Hyper-V)
+
+  - Lokale Entwicklungsumgebung für Minikube.
+  - Ermöglicht Tests des Kubernetes-Clusters vor Cloud-Deployments.
+
 #### Zusammenspiel der Komponenten
 
-## Datenbank
-
-## API
-
-## Github Secrets
+- Entwickler pushen Code in das App Repository auf GitHub.
+- CI/CD-Pipeline baut ein Docker-Image und legt es in der GitHub Container Registry ab.
+- Argo CD überwacht das Config Repository, erkennt neue Image-Tags und deployed die aktualisierte Version in das Kubernetes-Cluster
+- Ingress leitet den Benutzer-Traffic zur Musiceventfinder App.
+- Die App ruft Eventdaten von externen APIs ab, verarbeitet sie und stellt sie den Nutzern bereit.
+- Änderungen am Code führen so automatisch zu einem neuen Deployment der aktuellen Version.
 
 ## Entwicklung
 
 ### Minikube mit Hyper-V driver
 
-Treiber setzten:
-`minikube config set driver hyperv`
+#### Hilfreiche Kommandos:
 
-Cluster starten:
-` minikube start -p c1 --driver=hyperv`
-
-löschen des Clusters falls nötig:
+Löschen des Clusters falls nötig:
 `minikube delete -p=c1`
 
 Namespace wechseln:
 `kubectl config set-context --current --namespace=<name>`
 
+#### Umsetzung
+
+Treiber setzten:
+`minikube config set driver hyperv`
+
+Cluster starten:
+`minikube start -p c1`
+
+Profile kontrolle:
+`minikube profile list`
+
 ![profilelist](../Pictures/profilelist.png)
+
+Pods anschauen:
+`kubectl get pods -A`
 
 ![pods](../Pictures/pods.png)
 
 Ingress Addon aktivieren:
 `minikube addons enable ingress -p c1`
 
+Musicfinder Namespace erstellen:
+`kubectl create namespace musicevents`
+
 Argocd:
 ```bash
 kubectl create namespace argocd
 kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
 ```
+Passwort ausgeben lassen für ArgoCD:
+`sudo kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d`
 
-Port foward für kurzen test:
+Port foward um auf ArgoCD zuzugreiffen:
 `kubectl -n argocd port-forward svc/argocd-server 8080:443`
 
 ![argocd](../Pictures/testargocd.png)
-  
-`kubectl apply -f Minikube-Config/argocd/application.yaml -n argocd`
 
-In Argocd alles einrichten:
+#### In Argocd alles einrichten:
 
 Access auf das Image gewährleisten:
+
+Token im Github erstellen, es ist wichtig das dieser folgende Rechte bekommt:
+
+![Token Rechte](../Pictures/Tokenrechte.png)
 
 Token erstellen und hinterlegen:
 
@@ -142,13 +198,19 @@ kubectl create secret docker-registry ghcr-secret \
 
 Auf Kubernetes Deployen:
 
-` kubectl apply -f ghcr-secret.yaml`
+`kubectl apply -f ghcr-secret.yaml`
+
+In ArgoCD meine Applikation hinterlegen:
+  
+`kubectl apply -f Minikube-Config/argocd/application.yaml -n argocd`
 
 Im Argocd Projekt erstellen und Syncen:
 
 ![argocdprojekt](../Pictures/argocdprojekt.png)
 
 Secrets:
+
+Wichtig mit Base64 Encrypte: `echo "deinSecretWert" | base64`
 
 Ticketmaster API:
 ![secretapi](../Pictures/secretapi.png)
@@ -157,6 +219,20 @@ Image Zugang:
 ![imagekey](../Pictures/imagekey.png)
 
 ## Aufgetretene Probleme
+
+Bei den Secrets hatte ich einige probleme.
+
+Zuerst hatte ich vergessen die Keys auf den Cluster zu pushen, mit `kubectl apply -f xxxx.yaml`
+
+Danach war das Problem, dass er etwas im File nicht lesen konnte:
+
+Error: `grpc: error while marshaling: string field contains invalid UTF-8`
+
+Mir ist dann aufgefallen, dass ich den Ticketmaster Key nicht mit Base64 encryptet habe.
+
+Das habe ich dann wie folgt gemacht: `echo "deinSecretWert" | base64`
+
+Danach hat alles geklappt.
 
 ## Fallbacksolution
 
