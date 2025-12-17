@@ -13,6 +13,7 @@ Kommen wir zur Umsetzung des Projektes. In diesem Teil wird genau beschrieben, w
     - [Hilfreiche Kommandos:](#hilfreiche-kommandos)
     - [Umsetzung](#umsetzung)
       - [In Argocd alles einrichten:](#in-argocd-alles-einrichten)
+    - [Automatisieren](#automatisieren)
   - [Aufgetretene Probleme](#aufgetretene-probleme)
   - [Probleme beim wiederstarten vom Cluster](#probleme-beim-wiederstarten-vom-cluster)
   - [Fallbacksolution](#fallbacksolution)
@@ -137,6 +138,10 @@ Löschen des Clusters falls nötig:
 Namespace wechseln:
 `kubectl config set-context --current --namespace=<name>`
 
+In ArgoCD meine Applikation automatisch hinterlegen:
+  
+`kubectl apply -f Minikube-Config/argocd/application.yaml -n argocd`
+
 ### Umsetzung
 
 Treiber setzten:
@@ -172,10 +177,6 @@ Passwort ausgeben lassen für ArgoCD:
 Port foward um auf ArgoCD zuzugreiffen:
 `kubectl -n argocd port-forward svc/argocd-server 8080:443`
 
-Tunnel starten:
-
-`minikube tunnel -p c1`
-
 ![argocd](../Pictures/testargocd.png)
 
 #### In Argocd alles einrichten:
@@ -202,9 +203,9 @@ Auf Kubernetes Deployen:
 
 `kubectl apply -f ghcr-secret.yaml`
 
-In ArgoCD meine Applikation hinterlegen:
-  
-`kubectl apply -f Minikube-Config/argocd/application.yaml -n argocd`
+Tunnel starten um auf Applikation zuzugreiffen:
+
+`minikube tunnel -p c1`
 
 Im Argocd Projekt erstellen und Syncen:
 
@@ -229,6 +230,19 @@ DNS im Hostfile eintragen:
 ![hostfile](../Pictures/hostfile.png)
 
 ![Eintrag](../Pictures/Eintrag.png)
+
+### Automatisieren
+
+Da ich mehrere Male den Cluster neu mache musste, habe ich mich dazu entschieden ein Skript zu schreiben, dass alles automatisch macht bis auf das Port forwarding und den Minikube Tunnel zu starten.
+
+Das Skript liegt hier:
+
+> [Setup Minikube-Docker](https://github.com/lauradubach/Minikube-Config/blob/main/setup-minikube-docker.sh)
+
+Nun muss ich nur noch das File ausführen und dann Port forwarding für ArgoCD und den Tunnel starten für die App:
+
+`kubectl -n argocd port-forward svc/argocd-server 8080:443`
+`minikube tunnel -p c1`
 
 ## Aufgetretene Probleme
 
@@ -273,7 +287,7 @@ Nun habe ich versucht alles zu stoppen und neu zu starten:
 
 Leider war dann aber die ganze Config überschrieben. 
 
-Ich habe mich nun dazu entschieden auf Docker zu wechseln, da es zu heikel ist, dass dieses Problem jedesmal beim starten auftaucht.
+Ich habe mich nun dazu entschieden auf Docker zu wechseln, da es zu heikel ist, dass dieses Problem jedesmal beim starten auftaucht und ich immer wieder neu konfigurieren muss.
 
 ## Fallbacksolution
 
