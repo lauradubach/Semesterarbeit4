@@ -10,11 +10,11 @@ Kommen wir zur Umsetzung des Projektes. In diesem Teil wird genau beschrieben, w
     - [Komponenten im Detail](#komponenten-im-detail)
       - [Zusammenspiel der Komponenten](#zusammenspiel-der-komponenten)
   - [Entwicklung](#entwicklung)
-    - [Minikube mit Hyper-V driver](#minikube-mit-hyper-v-driver)
-      - [Hilfreiche Kommandos:](#hilfreiche-kommandos)
-      - [Umsetzung](#umsetzung)
+    - [Hilfreiche Kommandos:](#hilfreiche-kommandos)
+    - [Umsetzung](#umsetzung)
       - [In Argocd alles einrichten:](#in-argocd-alles-einrichten)
   - [Aufgetretene Probleme](#aufgetretene-probleme)
+  - [Probleme beim wiederstarten vom Cluster](#probleme-beim-wiederstarten-vom-cluster)
   - [Fallbacksolution](#fallbacksolution)
 - [Kontrollieren](#kontrollieren)
   - [Testing](#testing)
@@ -129,9 +129,7 @@ Der Microservice Musiceventfinder ist in Flask (Python) implementiert und wird a
 
 ## Entwicklung
 
-### Minikube mit Hyper-V driver
-
-#### Hilfreiche Kommandos:
+### Hilfreiche Kommandos:
 
 Löschen des Clusters falls nötig:
 `minikube delete -p=c1`
@@ -139,10 +137,10 @@ Löschen des Clusters falls nötig:
 Namespace wechseln:
 `kubectl config set-context --current --namespace=<name>`
 
-#### Umsetzung
+### Umsetzung
 
 Treiber setzten:
-`minikube config set driver hyperv`
+`minikube config set driver docker`
 
 Cluster starten:
 `minikube start -p c1`
@@ -173,6 +171,10 @@ Passwort ausgeben lassen für ArgoCD:
 
 Port foward um auf ArgoCD zuzugreiffen:
 `kubectl -n argocd port-forward svc/argocd-server 8080:443`
+
+Tunnel starten:
+
+`minikube tunnel -p c1`
 
 ![argocd](../Pictures/testargocd.png)
 
@@ -208,6 +210,10 @@ Im Argocd Projekt erstellen und Syncen:
 
 ![argocdprojekt](../Pictures/argocdprojekt.png)
 
+Alle Informationen:
+
+![Informationen](../Pictures/Informationen.png)
+
 Secrets:
 
 Wichtig mit Base64 Encrypte: `echo "deinSecretWert" | base64`
@@ -217,6 +223,12 @@ Ticketmaster API:
 
 Image Zugang:
 ![imagekey](../Pictures/imagekey.png)
+
+DNS im Hostfile eintragen:
+
+![hostfile](../Pictures/hostfile.png)
+
+![Eintrag](../Pictures/Eintrag.png)
 
 ## Aufgetretene Probleme
 
@@ -233,6 +245,35 @@ Mir ist dann aufgefallen, dass ich den Ticketmaster Key nicht mit Base64 encrypt
 Das habe ich dann wie folgt gemacht: `echo "deinSecretWert" | base64`
 
 Danach hat alles geklappt.
+
+## Probleme beim wiederstarten vom Cluster
+
+Ich wollte nach einer Woche den Cluster wieder starten, um alles zu dokumentieren, dann kam aber immer folgender Error:
+
+`minikube start -p c1`
+
+![Error1](image.png)
+
+Das ist nun schon zwei mal vorgekommen.
+
+Ich konnte dann herausfinden, dass es am APIserver lag:
+
+```bash
+c1
+type: Control Plane
+host: Running
+kubelet: Running
+apiserver: Stopped
+kubeconfig: Configured
+```
+Nun habe ich versucht alles zu stoppen und neu zu starten:
+
+`minikube stop -p c1`
+`minikube start -p c1 --force`
+
+Leider war dann aber die ganze Config überschrieben. 
+
+Ich habe mich nun dazu entschieden auf Docker zu wechseln, da es zu heikel ist, dass dieses Problem jedesmal beim starten auftaucht.
 
 ## Fallbacksolution
 
