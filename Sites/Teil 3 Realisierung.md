@@ -217,7 +217,7 @@ Alle Informationen:
 
 Secrets:
 
-Wichtig mit Base64 Encrypte: `echo "deinSecretWert" | base64`
+Wichtig mit Base64 Encrypten: `echo "deinSecretWert" | base64`
 
 Ticketmaster API:
 ![secretapi](../Pictures/secretapi.png)
@@ -270,7 +270,9 @@ Ich wollte nach einer Woche den Cluster wieder starten, um alles zu dokumentiere
 
 Das ist nun schon zwei mal vorgekommen.
 
-Ich konnte dann herausfinden, dass es am APIserver lag:
+## Wechsel von Hyper-V zu Docker als Minikube-Driver
+
+Während der Arbeit mit dem Kubernetes-Cluster auf Basis von Minikube mit dem Hyper-V-Driver traten wiederholt Probleme beim Neustart des Clusters auf. Konkret zeigte der Status, dass der API-Server nicht mehr korrekt startete, obwohl Control Plane und Kubelet als „Running“ markiert waren:
 
 ```bash
 c1
@@ -280,14 +282,28 @@ kubelet: Running
 apiserver: Stopped
 kubeconfig: Configured
 ```
-Nun habe ich versucht alles zu stoppen und neu zu starten:
 
-`minikube stop -p c1`
-`minikube start -p c1 --force`
+Da der API-Server eine zentrale Komponente von Kubernetes ist, war der Cluster in diesem Zustand nicht mehr funktionsfähig. Sämtliche `kubectl`-Operationen schlugen fehl, wodurch weder Deployments noch Debugging möglich waren.
 
-Leider war dann aber die ganze Config überschrieben. 
+Ein Versuch, den Cluster durch Stoppen und erneutes Starten wiederherzustellen, führte nicht zum gewünschten Ergebnis:
 
-Ich habe mich nun dazu entschieden auf Docker zu wechseln, da es zu heikel ist, dass dieses Problem jedesmal beim starten auftaucht und ich immer wieder neu konfigurieren muss.
+```bash
+minikube stop -p c1
+minikube start -p c1 --force
+```
+
+Zwar ließ sich der Cluster erneut starten, jedoch wurde dabei die bestehende Cluster-Konfiguration überschrieben. Dies hatte zur Folge, dass bereits eingerichtete Komponenten wie Namespaces, Secrets, Ingress-Konfigurationen und ArgoCD-Setups erneut manuell konfiguriert werden mussten. Für eine Projektarbeit mit wiederholten Neustarts und Tests stellt dieses Verhalten ein erhebliches Risiko dar.
+
+Nach Analyse der Situation fiel die Entscheidung, von Hyper-V auf den Docker-Driver zu wechseln. Der Docker-Driver bietet eine stabilere Integration in die bestehende Entwicklungsumgebung, da keine zusätzliche Virtualisierungsschicht notwendig ist und bekannte Probleme mit Hyper-V vermieden werden.
+
+Zusätzlich ermöglicht Docker:
+
+- eine zuverlässigere Persistenz der Cluster-Konfiguration
+- schnellere Start- und Stoppzeiten des Clusters
+- eine bessere Reproduzierbarkeit der Umgebung
+- eine einfachere Fehlersuche bei Problemen
+
+Aus diesen Gründen wurde der Docker-Driver als technisch sinnvollere und robustere Lösung für die Umsetzung dieser Projektarbeit gewählt.
 
 ## Fallbacksolution
 
