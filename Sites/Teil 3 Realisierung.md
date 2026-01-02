@@ -15,7 +15,7 @@ Kommen wir zur Umsetzung des Projektes. In diesem Teil wird genau beschrieben, w
       - [In Argocd alles einrichten:](#in-argocd-alles-einrichten)
     - [Automatisieren](#automatisieren)
   - [Aufgetretene Probleme](#aufgetretene-probleme)
-  - [Probleme beim wiederstarten vom Cluster](#probleme-beim-wiederstarten-vom-cluster)
+  - [Wechsel von Hyper-V zu Docker als Minikube-Driver](#wechsel-von-hyper-v-zu-docker-als-minikube-driver)
   - [Fallbacksolution](#fallbacksolution)
 - [Kontrollieren](#kontrollieren)
   - [Testing](#testing)
@@ -260,19 +260,11 @@ Das habe ich dann wie folgt gemacht: `echo "deinSecretWert" | base64`
 
 Danach hat alles geklappt.
 
-## Probleme beim wiederstarten vom Cluster
-
-Ich wollte nach einer Woche den Cluster wieder starten, um alles zu dokumentieren, dann kam aber immer folgender Error:
-
-`minikube start -p c1`
-
-![Error1](image.png)
-
-Das ist nun schon zwei mal vorgekommen.
-
 ## Wechsel von Hyper-V zu Docker als Minikube-Driver
 
-Während der Arbeit mit dem Kubernetes-Cluster auf Basis von Minikube mit dem Hyper-V-Driver traten wiederholt Probleme beim Neustart des Clusters auf. Konkret zeigte der Status, dass der API-Server nicht mehr korrekt startete, obwohl Control Plane und Kubelet als „Running“ markiert waren:
+Während der Arbeit mit dem Kubernetes-Cluster auf Basis von Minikube mit dem Hyper-V-Driver, traten wiederholt Probleme beim Neustart des Clusters auf. Konkret zeigte der Status, dass der API-Server nicht mehr korrekt startete, obwohl Control Plane und Kubelet als „Running“ markiert waren:
+
+![error](../Pictures/error1.png)
 
 ```bash
 c1
@@ -314,17 +306,31 @@ Da das Projekt nicht für den Produktiven Gebrauch gedacht ist, weil es sich auf
 ## Testing
 ### Testkonzept
 
-| Testperson | Datum |
-| ---------- | ----- |
+| Testperson     | Datum    |
+| -------------- | -------- |
+| Laura Dubach   | 02.01.26 |
 
-| System | Testmittel | Testmethode |
-| -------| ---------- | ----------- |
+| System                          | Testmittel                                   | Testmethode                  |
+| ------------------------------- | -------------------------------------------- | ----------------------------- |
+| Minikube Kubernetes Cluster     | Laptop (Windows), Docker Desktop, kubectl    | Funktionaler Test             |
+| ArgoCD Deployment               | Webbrowser, kubectl                          | Manuelle Überprüfung          |
+| API-Applikation (Microservice)  | curl / Browser                               | Black-Box-Test                |
+| Ingress / Service Routing       | Browser, kubectl port-forward                | Integrationstest              |
+
+Die Tests wurden manuell durchgeführt, um sicherzustellen, dass der Kubernetes-Cluster nach dem Wechsel auf den Docker-Driver stabil läuft und alle relevanten Komponenten korrekt funktionieren.
 
 ### Testdurchführung
 
 | Testfall | Erwartetes Ergebnis | Testresultat |
-| ---------| ------------------- | ------------ |
+| -------- | ------------------- | ------------ |
+| Starten des Minikube-Clusters mit Docker-Driver | Cluster startet ohne Fehler, API-Server ist erreichbar | ![clusterstarten](../Pictures/clusterstarten.png) |
+| Überprüfung des Cluster-Status (`minikube status`) | Alle Komponenten (Host, Kubelet, API-Server) sind „Running“ | ![status](../Pictures/status.png) |
+| Zugriff auf den Cluster mit `kubectl` | `kubectl get pods` liefert eine gültige Antwort | ![testpods](../Pictures/testpods.png)|
+| Deployment der Applikation über ArgoCD | Applikation wird ohne Fehler synchronisiert | ![synced](../Pictures/synced.png) |
+| Zugriff auf die Applikation über Ingress / Service | Applikation ist über den Browser erreichbar | ![ingresstest](../Pictures/ingresstest.png) |
+| Neustart des Clusters | Cluster startet erneut ohne Konfigurationsverlust | ![clusterneustart](../Pictures/clusterneustart.png) |
 
+Alle durchgeführten Tests verliefen erfolgreich. Der Wechsel auf den Docker-Driver führte zu einer stabileren Umgebung und beseitigte die zuvor aufgetretenen Startprobleme des API-Servers.
 
 #### Umgebung:
 
