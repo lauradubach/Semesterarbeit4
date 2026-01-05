@@ -3,7 +3,6 @@
 - [Sprint Abschlüsse](#sprint-abschlüsse)
   - [Sprint Review 1](#sprint-review-1)
     - [Abgeschlossene Story\`s](#abgeschlossene-storys)
-    - [Besprechung](#besprechung)
   - [Sprint-Retrospektive 1](#sprint-retrospektive-1)
     - [Sonnenschein](#sonnenschein)
     - [Auftrieb](#auftrieb)
@@ -12,7 +11,6 @@
     - [Ausblick](#ausblick)
   - [Sprint Review 2](#sprint-review-2)
     - [Abgeschlossene Story\`s](#abgeschlossene-storys-1)
-    - [Besprechung](#besprechung-1)
   - [Sprint-Retrospektive 2](#sprint-retrospektive-2)
     - [Sonnenschein](#sonnenschein-1)
     - [Auftrieb](#auftrieb-1)
@@ -72,11 +70,6 @@ Folgendes wurde genau umgesetzt:
   - Pipeline-Status wird im Repository sichtbar angezeigt.
   - Fehlgeschlagene Builds oder Tests werden mit klaren Fehlermeldungen angezeigt.
 
-### Besprechung
-
-| Besprechung | Datum | Uhrzeit | Teilnehmer | 
-| ---- | ---- | ---- | ---- |
-
 ## Sprint-Retrospektive 1
 
 ![Retro1](../Pictures/SA4_Retro1.jpg)
@@ -113,24 +106,57 @@ Alle vorgesehenen Story`s konnten fristgerecht abgeschlossen werden.
 
 Folgendes wurde genau umgesetzt:
 
+- Kubernetes-Manifeste oder Helm-Charts erstellen
+  - Deployment-, Service- und ggf. ConfigMap-/Secret-Manifeste sind erstellt.
+  - Alle YAML-Dateien sind validiert und im Repository versioniert.
+  - Ressourcen können mit kubectl apply oder helm install ohne Fehler deployt werden.
+  - Dokumentation zur Nutzung und Anpassung der Manifeste ist vorhanden.
+
+- Service, Ingress & Deployment konfigurieren
+  - Deployment-Objekt ist korrekt definiert (Image, Replikas, Ressourcenlimits, etc.).
+  - Service stellt den Microservice intern bereit.
+  - Ingress ist eingerichtet und ermöglicht externen Zugriff über einen definierten Endpunkt.
+  - Zugriff auf den Microservice über den angegebenen Host oder Port ist erfolgreich.
+  - Änderungen an Konfigurationen können ohne Ausfall neu ausgerollt werden.
+
+- CI/CD um Deployment-Stufe erweitern
+  - Deployment-Schritt ist in die Pipeline integriert
+  - Deployment erfolgt nur, wenn Build und Tests erfolgreich sind.
+  - Pipeline führt automatisch kubectl apply oder helm upgrade aus.
+  - Erfolgreiches Deployment wird in der Pipeline angezeigt.
+  - Bei Fehlern wird das Deployment abgebrochen und der vorherige Zustand beibehalten.
+
 Folgender Punkt wurde während dem Sprint ergänzt:
 
-### Besprechung
-
-| Besprechung | Datum | Uhrzeit | Teilnehmer | 
-| ---- | ---- | ---- | ---- |
+Kein Punkt wurde ergänzt, der Sprint ging jedoch eine Woche länger also 5 Wochen, da noch eine Woche Ferien eingeplant sind und da nicht gearbeitet wurde.
 
 ## Sprint-Retrospektive 2
 
 ### Sonnenschein
 
+- Technische Herausforderungen gemeistert
+- Deployment stabil und funktionsfähig
+- Sprintziele erreicht  
+
 ### Auftrieb
+
+- Gute Einarbeitung in neue Themen
+- Produktiver Workflow über den Sprint hinweg
+- Klare Organisation und Fokus
 
 ### Gewitterwolken
 
+- Probleme mit Hyper V
+
 ### Sandballast
 
+- Teilweise Mehraufwand durch Trial-and-Error
+- Zeitaufwand schwer einschätzbar
+
 ### Ausblick
+
+- Ideen von Corrado umsetzten
+- Dokumentation weiterhin konsequent pflegen
 
 ## Sprint Review 3
 

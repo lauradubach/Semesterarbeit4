@@ -323,6 +323,7 @@ Die Tests wurden manuell durchgeführt, um sicherzustellen, dass der Kubernetes-
 
 | Testfall | Erwartetes Ergebnis | Testresultat |
 | -------- | ------------------- | ------------ |
+| CICD Pipline läuft | Die Pipline läuft ohne Fehler durch | ![pipline](../Pictures/pipline.png) |
 | Starten des Minikube-Clusters mit Docker-Driver | Cluster startet ohne Fehler, API-Server ist erreichbar | ![clusterstarten](../Pictures/clusterstarten.png) |
 | Überprüfung des Cluster-Status (`minikube status`) | Alle Komponenten (Host, Kubelet, API-Server) sind „Running“ | ![status](../Pictures/status.png) |
 | Zugriff auf den Cluster mit `kubectl` | `kubectl get pods` liefert eine gültige Antwort | ![testpods](../Pictures/testpods.png)|
