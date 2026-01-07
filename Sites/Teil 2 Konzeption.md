@@ -253,6 +253,57 @@ Jetzt beginnt die eigentliche Umsetzung: Entwicklung, Konfiguration, Tests und I
 
 Das Projekt wird formal beendet. Es finden eine Abnahme, eine Übergabe an den Betrieb sowie ggf. eine Schulung der Nutzer statt. Ausserdem werden Lessons Learned dokumentiert, um aus dem Projekt für zukünftige Vorhaben zu lernen.
 
+```mermaid
+flowchart TD
+    A[Initialisierung] --> B[Konzeption]
+    B --> C[Realisieren]
+    C --> D[Abschluss]
+
+    subgraph A_Phase[Initialisierung]
+        A1[Projekt starten]
+        A2[Ziele definieren]
+        A3[Stakeholder identifizieren]
+        A4[Grobe Planung & Projektauftrag erstellen]
+        A5[Risiken & Chancen analysieren]
+        A6[Durchführbarkeit prüfen]
+    end
+    A --> A1
+    A --> A2
+    A --> A3
+    A --> A4
+    A --> A5
+    A --> A6
+
+    subgraph B_Phase[Konzeption]
+        B1[Anforderungen erheben und dokumentieren]
+        B2[Lösungsansätze erarbeiten und bewerten]
+        B3[Fach- und technisches Konzept erstellen]
+    end
+    B --> B1
+    B --> B2
+    B --> B3
+
+    subgraph C_Phase[Realisieren]
+        C1[Entwicklung / Konfiguration]
+        C2[Tests & Integration]
+        C3[Iterative Arbeitsweise z.B. Sprints]
+    end
+    C --> C1
+    C --> C2
+    C --> C3
+
+    subgraph D_Phase[Abschluss]
+        D1[Abnahme durchführen]
+        D2[Übergabe an Betrieb]
+        D3[Nutzer schulen]
+        D4[Lessons Learned dokumentieren]
+    end
+    D --> D1
+    D --> D2
+    D --> D3
+    D --> D4
+```
+
 ## Ist und Soll
 
 ![Ist&Soll](../Pictures/Ist&Soll.png)
@@ -291,17 +342,17 @@ Risikoscore: W × A
 | 7–9   | Hoch      |
 | 10–12 | Sehr hoch |
 
-| Risiko | Beschreibung | W | A | Score | Kategorie | Gegenmaßnahmen |
-| ------ | ------------ | - | - | ----- | --------- | -------------- |
-| **Hyper-V Ressourcenengpass** | VM benötigt mehr CPU/RAM als geplant, Cluster wird instabil | 2 | 3 | 6 | Mittel | Ressourcenplanung, Limits setzen, Monitoring |
-| **Kubernetes Instabilität** | Fehlerhafte Deployments, CrashLoopBackoffs durch falsche Manifeste | 2 | 3 | 6 | Mittel | Tests lokal, Liveness/Readiness Probes, ArgoCD Sync-Prüfung |
-| **ArgoCD Fehlkonfiguration** | Fehlendes Sync- oder Health-Monitoring führt zu fehlerhaften Releases | 2 | 3 | 6 | Mittel | ArgoCD Policies, automatische Health-Checks |
-| **Externe Ticketmaster-API nicht erreichbar** | API Down, Rate Limit, Timeout → Microservice liefert keine Daten | 3 | 4 | 12 | Sehr hoch | Caching, Retry-Mechanismen, Circuit Breaker, Fehlermeldungen |
-| **Ingress Routing Fehler** | Zugriff auf App nicht möglich durch falsche Regeln | 2 | 2 | 4 | Mittel | Ingress-Tests, Logs prüfen, standardisierte Routen |
-| **Container Build-Fehler** | Image baut nicht oder enthält Bugs | 2 | 2 | 4 | Mittel | CI-Tests, Linting, Build-Pipeline automatisieren |
-| **Versionskonflikte/Dependency Bugs** | Bibliotheken oder Images inkompatibel | 1 | 2 | 2 | Niedrig | Versionsmanagement, Lockfiles |
-| **Netzwerkfehler im Cluster** | Services nicht erreichbar oder DNS bricht | 1 | 3 | 3 | Niedrig/Mittel | CoreDNS-Monitoring, kubectl describe/logs prüfen |
-| **Repo-Strukturfehler (App/Config)** | ArgoCD kann Manifeste nicht finden oder falsch anwenden | 1 | 2 | 2 | Niedrig | Klare Repo-Struktur (App Repo / Config Repo) |
+| Risiko | Beschreibung | W | A | Score |
+| ------ | ------------ | - | - | ----- |
+| **Externe Ticketmaster-API nicht erreichbar** | API Down, Rate Limit, Timeout → Microservice liefert keine Daten | 3 | 4 | 12 |
+| **Hyper-V Ressourcenengpass** | VM benötigt mehr CPU/RAM als geplant, Cluster wird instabil | 2 | 3 | 6 |
+| **Kubernetes Instabilität** | Fehlerhafte Deployments, CrashLoopBackoffs durch falsche Manifeste | 2 | 3 | 6 |
+| **ArgoCD Fehlkonfiguration** | Fehlendes Sync- oder Health-Monitoring führt zu fehlerhaften Releases | 2 | 3 | 6 |
+| **Ingress Routing Fehler** | Zugriff auf App nicht möglich durch falsche Regeln | 2 | 2 | 4 |
+| **Container Build-Fehler** | Image baut nicht oder enthält Bugs | 2 | 2 | 4 |
+| **Netzwerkfehler im Cluster** | Services nicht erreichbar oder DNS bricht | 1 | 3 | 3 |
+| **Versionskonflikte/Dependency Bugs** | Bibliotheken oder Images inkompatibel | 1 | 2 | 2 |
+| **Repo-Strukturfehler (App/Config)** | ArgoCD kann Manifeste nicht finden oder falsch anwenden | 1 | 2 | 2 |
 
 > (Chat GPT) [Quelle](https://chatgpt.com/share/691c4eab-5f0c-8007-8817-4b7039fabc74)
 

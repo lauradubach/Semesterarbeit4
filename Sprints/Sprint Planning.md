@@ -20,7 +20,11 @@
 
 ## Sprint 1, 03.11.25 - 01.12.25, 28 Tage
 
-> Ziel: Anwendung containerisieren & erste Pipeline erstellen
+> Sprint Ziel: Anwendung containerisieren & erste Pipeline erstellen
+
+- Mein Fokus liegt darauf, die Anwendung zu containerisieren und eine erste Pipeline zu erstellen, sodass ich eine stabile Grundlage für Deployment und Automatisierung habe.
+- Ich bin überzeugt, dass dies die Effizienz steigert, Fehler reduziert und mir eine klare Struktur für zukünftige Entwicklungen gibt.
+- Dies wird bestätigt sein, wenn die Anwendung erfolgreich in Containern läuft und die Pipeline erste automatische Schritte ausführt.
 
 ### Aufgaben
 
@@ -32,11 +36,15 @@ Alle Aufgaben werden von Laura Dubach umgesetzt.
 
 ### Nächste Schritte
 
-- Sprintreview findet am:  statt
+- Sprintreview findet am: 02.12.25  statt
 
 ## Sprint 2, 02.12.25 - 05.01.26, 34 Tage
 
-> Ziel: Microservice automatisiert in Kubernetes deployen
+> Sprint Ziel: Microservice automatisiert in Kubernetes deployen
+
+- Mein Fokus liegt darauf, den Microservice automatisiert in Kubernetes zu deployen, sodass ich den Betrieb skalierbar und zuverlässig gestalten kann.
+- Ich bin überzeugt, dass dies die Effizienz erhöht, manuelle Fehler reduziert und eine stabile Grundlage für weitere Microservices schafft.
+- Dies wird bestätigt sein, wenn der Microservice automatisch in Kubernetes bereitgestellt wird und korrekt läuft.
 
 ### Aufgaben
 
@@ -48,11 +56,15 @@ Alle Aufgaben werden von Laura Dubach umgesetzt.
 
 ### Nächste Schritte
 
-- Sprintreview findet am:  statt
+- Sprintreview findet am: 06.01.26 statt
 
 ## Sprint 3, 06.01.26 - 27.01.26, 21 Tage
 
-> Ziel: Feinschliff & Projektabschluss
+> Sprint Ziel: Feinschliff & Projektabschluss
+
+- Mein Fokus liegt darauf, den Feinschliff am Projekt vorzunehmen und es erfolgreich abzuschließen, sodass alle Ergebnisse sauber, vollständig und funktionsfähig sind.
+- Ich bin überzeugt, dass dies die Qualität sicherstellt, offene Aufgaben abschließt und eine klare Übergabe oder Präsentation ermöglicht.
+- Dies wird bestätigt sein, wenn alle geplanten Features umgesetzt, getestet und dokumentiert sind und das Projekt einsatzbereit ist.
 
 ### Aufgaben
 
@@ -64,4 +76,4 @@ Alle Aufgaben werden von Laura Dubach umgesetzt.
 
 ### Nächste Schritte
 
-- Sprintreview findet am:  statt
+- Sprintreview findet am: 27.01.26 statt

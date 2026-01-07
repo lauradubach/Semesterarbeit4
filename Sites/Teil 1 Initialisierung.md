@@ -19,8 +19,10 @@ In diesem Kapitel wird ins Thema der Arbeit eingeführt. Es beschreibt den Hinte
     - [Deployment](#deployment)
     - [Dokumentation](#dokumentation)
     - [Review \& Akzeptanz](#review--akzeptanz)
-  - [Fibonacci](#fibonacci)
-    - [Meine Schätzung](#meine-schätzung)
+  - [Einsatz von Fibonacci Story Points im Projekt](#einsatz-von-fibonacci-story-points-im-projekt)
+    - [Verwendete Skala](#verwendete-skala)
+    - [Vorgehen bei der Schätzung](#vorgehen-bei-der-schätzung)
+    - [Nutzen für das Projekt](#nutzen-für-das-projekt)
 - [Projektorganisation](#projektorganisation)
   - [Beteiligte Personen](#beteiligte-personen)
     - [Kanditatin](#kanditatin)
@@ -170,27 +172,53 @@ Ein Product Backlog Item, gilt als "Done", wenn **alle** folgenden Kriterien erf
 - Die Reflexion ist verständlich.
 - Die Funktionalität ist im Product Backlog als „Done“ markiert.
 
-## Fibonacci
+## Einsatz von Fibonacci Story Points im Projekt
 
-Die **Fibonacci-Folge** ist eine unendliche Zahlenreihe, bei der jede Zahl die Summe der beiden vorhergehenden Zahlen ist. Die Reihe beginnt üblicherweise mit 0 und 1, sodass die Folge lautet:
+Da das Projekt nach Scrum-Prinzipien umgesetzt wird, verwende ich zur Aufwandsschätzung Story Points auf Basis einer angepassten Fibonacci-Skala. Obwohl ich als Einzelentwickler arbeite, nutze ich die Methode bewusst, um den technischen Aufwand, die Komplexität und Risiken der User Stories strukturiert zu bewerten und transparent zu dokumentieren.
 
+### Verwendete Skala
 
-In der agilen Softwareentwicklung wird das Fibonacci-Prinzip häufig für die Schätzung des Aufwands von Aufgaben verwendet. Dabei stehen die Zahlen der Fibonacci-Reihe (1, 2, 3, 5, 8, …) als relative Maßzahlen für den geschätzten Arbeitsaufwand.
+Ich nutze folgende Story-Point-Werte:
 
-### Meine Schätzung
+**1 Punkt = sehr klein / trivial**  
+Klar umrissene Aufgabe mit minimalem Aufwand und praktisch keinem Risiko.
 
-Wenn **1 Punkt = 1 Stunde** definiert wird, ergibt sich folgende Zuordnungen:
+**2 Punkte = klein, aber nicht ganz trivial**  
+Etwas mehr Aufwand als 1 Punkt, aber weiterhin klar überschaubar und ohne größere Unsicherheiten.
 
-| Fibonacci-Punkt | Aufwand in Stunden |
-|-----------------|-----------------|
-| 1               | 1               |
-| 2               | 2               |
-| 3               | 3               |
-| 5               | 5               |
-| 8               | 8               |
-| 13              | 13              |
+**3 Punkte = normaler Umfang**  
+Standardaufgabe mit mehreren Arbeitsschritten, geringem Risiko und moderater Komplexität.
 
-> (Chat GPT) [Quelle](https://chatgpt.com/share/69145168-8c68-8007-82a2-a49cbda92bb8)
+**5 Punkte = größerer Aufwand / erhöhte Komplexität**  
+Technisch anspruchsvollere Aufgabe, die mehr Planung erfordert und potenziell Fehlerquellen oder offene Fragen enthält.
+
+**8 Punkte = komplex / sehr aufwendig**  
+Große Story mit hohem Implementierungsumfang, deutlichen Unsicherheiten oder höherem Risiko. Stories mit mehr als 8 Punkten werden bewusst in kleinere Stories zerlegt.
+
+Die Zahlen steigen bewusst nicht linear, sondern in größeren Sprüngen. Dadurch werde ich gezwungen, Aufgaben klar zu kategorisieren, anstatt sie „fein zu schätzen“.
+
+### Vorgehen bei der Schätzung
+
+Für jede User Story erfolgt folgende Bewertung:
+
+1. Verständnis der Aufgabe klären  
+2. Einschätzung von Umfang, notwendiger Implementierung, Testaufwand und möglichen Risiken  
+3. Zuordnung eines passenden Fibonacci-Wertes (1 – 2 – 3 – 5 – 8)
+
+Besonders große Stories werden bei Bedarf weiter zerlegt, bis sie sinnvoll schätzbar sind.
+
+### Nutzen für das Projekt
+
+Auch als Einzelentwickler profitiere ich von Story Points:
+
+- strukturierte Aufwandsschätzung  
+- bessere Planbarkeit  
+- klare Priorisierung der Aufgaben  
+- transparente Dokumentation des Entwicklungsprozesses  
+
+Durch die Anwendung der Fibonacci Story Points wird der Projektaufwand nachvollziehbar bewertet und Scrum methodisch korrekt umgesetzt.
+
+> (Chat GPT) [Quelle](https://chatgpt.com/share/695e11ee-aca0-8007-a795-4b48d14060d5)
 
 # Projektorganisation
 

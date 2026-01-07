@@ -63,13 +63,15 @@ Im Kapitel Auswerten wird der Abschluss des Projektes beschrieben. Es wird Zusam
 
 12.11.25:
 > (Chat GPT) [Quelle](https://chatgpt.com/share/69145d5b-1d28-8007-a9ab-019f02a428de)
-> (Chat GPT) [Quelle](https://chatgpt.com/share/69145168-8c68-8007-82a2-a49cbda92bb8)
 
 18.11.25:
 > (Chat GPT) [Quelle][text](https://chatgpt.com/share/691c4131-e78c-8007-b99b-0448ad90d2e2)
 > (Chat GPT) [Quelle](https://chatgpt.com/share/691c4eab-5f0c-8007-8817-4b7039fabc74)
 > (Chat GPT) [Quelle](https://chatgpt.com/share/691c5c94-df1c-8007-92fd-93219b75bf52)
 > (Chat GPT) [Quelle](https://chatgpt.com/share/691c632c-1b80-8007-9f6a-b2ee70f95a04)
+
+07.01.2026:
+> (Chat GPT) [Quelle](https://chatgpt.com/share/695e11ee-aca0-8007-a795-4b48d14060d5)
 
 > Back [Page](https://lauradubach.github.io/Semesterarbeit4/Sites/Teil%203%20Realisierung.html)
 >

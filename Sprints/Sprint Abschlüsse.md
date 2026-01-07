@@ -3,6 +3,7 @@
 - [Sprint Abschlüsse](#sprint-abschlüsse)
   - [Sprint Review 1](#sprint-review-1)
     - [Abgeschlossene Story\`s](#abgeschlossene-storys)
+  - [Burndownchart](#burndownchart)
   - [Sprint-Retrospektive 1](#sprint-retrospektive-1)
     - [Sonnenschein](#sonnenschein)
     - [Auftrieb](#auftrieb)
@@ -11,6 +12,7 @@
     - [Ausblick](#ausblick)
   - [Sprint Review 2](#sprint-review-2)
     - [Abgeschlossene Story\`s](#abgeschlossene-storys-1)
+  - [Burndownchart](#burndownchart-1)
   - [Sprint-Retrospektive 2](#sprint-retrospektive-2)
     - [Sonnenschein](#sonnenschein-1)
     - [Auftrieb](#auftrieb-1)
@@ -25,6 +27,7 @@
     - [Gewitterwolken](#gewitterwolken-2)
     - [Sandballast](#sandballast-1)
     - [Ausblick](#ausblick-2)
+- [Besprechung](#besprechung)
 
 ## Sprint Review 1
 
@@ -69,6 +72,16 @@ Folgendes wurde genau umgesetzt:
   - Automatisierte Tests werden in der Pipeline ausgeführt.
   - Pipeline-Status wird im Repository sichtbar angezeigt.
   - Fehlgeschlagene Builds oder Tests werden mit klaren Fehlermeldungen angezeigt.
+
+Siehe Teil Konzeption: 
+
+- > [Teil 2](https://lauradubach.github.io/Semesterarbeit4/Sites/Teil%202%20Konzeption.html) Konzeption
+
+## Burndownchart
+
+![Chart1](../Pictures/Chart1.png)
+
+Da ich Fibonacci erst später angewendet habe, ist das Burndownchart mit den Storypoints falsch. Deshalb habe ich hier das Chart hinterlegt mit den "Anzahl Vorgängen"
 
 ## Sprint-Retrospektive 1
 
@@ -130,6 +143,16 @@ Folgender Punkt wurde während dem Sprint ergänzt:
 
 Kein Punkt wurde ergänzt, der Sprint ging jedoch eine Woche länger also 5 Wochen, da noch eine Woche Ferien eingeplant sind und da nicht gearbeitet wurde.
 
+Siehe Teil Realisierung: 
+
+- > [Teil 3](https://lauradubach.github.io/Semesterarbeit4/Sites/Teil%203%20Realisierung.html) Realisierung
+
+## Burndownchart
+
+![chart2](../Pictures/Chart2.png)
+
+![chart2.1](../Pictures/chart2.1.png)
+
 ## Sprint-Retrospektive 2
 
 ### Sonnenschein
@@ -177,3 +200,7 @@ Folgendes wurde genau umgesetzt:
 ### Sandballast
 
 ### Ausblick
+
+# Besprechung
+
+- burndownchart besprechen
