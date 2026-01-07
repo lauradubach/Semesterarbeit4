@@ -43,6 +43,7 @@ In diesem Kapitel wird ins Thema der Arbeit eingeführt. Es beschreibt den Hinte
 | 1.7 | 01.12.25 | Laura Dubach | Sprint Abschluss & Retro von Sprint 1 erledigen |
 | 1.8 | 17.12.25 | Laura Dubach | Realisierung weiter dokumentieren |
 | 1.9 | 02.01.26 | Laura Dubach | Realisierung beenden und Tests dokumentieren |
+| 2.0 | 07.01.26 | Laura Dubach | Feedback von Corrado umsetzten |
 
 # Aufgabenstellung
 
