@@ -23,6 +23,11 @@ Ziel der Arbeit ist es, eine erweiterbare, moderne und praxisnahe Lösung umzuse
 - > [Sprint Planning](https://lauradubach.github.io/Semesterarbeit4/Sprints/Sprint%20Planning.html)
 - > [Sprint Abschlüsse](https://lauradubach.github.io/Semesterarbeit4/Sprints/Sprint%20Abschl%C3%BCsse.html)
 
+## Code
+
+- > [Minikube-Config](https://github.com/lauradubach/Minikube-Config)
+- > [Produktionsumgebung](https://github.com/lauradubach/Produktionsumgebung)
+
 ## Autorin
 
 ![Autorin](Pictures/Autorin.jpg)
