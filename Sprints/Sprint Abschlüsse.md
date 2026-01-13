@@ -155,6 +155,8 @@ Siehe Teil Realisierung:
 
 ## Sprint-Retrospektive 2
 
+![retro2](../Pictures/SA4_Retro2.jpg)
+
 ### Sonnenschein
 
 - Technische Herausforderungen gemeistert
