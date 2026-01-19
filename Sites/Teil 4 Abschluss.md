@@ -12,13 +12,12 @@ Der letzte Teil der Arbeit. Hier wird die ganze Auswertung des Projektes beschri
       - [Analysen und Planung](#analysen-und-planung)
       - [Entscheidung](#entscheidung)
       - [Umsetzung des Projektes](#umsetzung-des-projektes)
-      - [Optimierung](#optimierung)
-    - [Fazit](#fazit)
-      - [Effizienzsteigerung](#effizienzsteigerung)
-      - [Lernerfahrungen](#lernerfahrungen)
-    - [Mögliche Weiterentwicklung](#mögliche-weiterentwicklung)
-      - [Erweiterte Funktionalität](#erweiterte-funktionalität)
-      - [Skalierbarkeit und Performance](#skalierbarkeit-und-performance)
+  - [Fazit](#fazit)
+    - [Effizienzsteigerung](#effizienzsteigerung)
+    - [Lernerfahrungen](#lernerfahrungen)
+  - [Mögliche Weiterentwicklung](#mögliche-weiterentwicklung)
+    - [Erweiterte Funktionalität](#erweiterte-funktionalität)
+    - [Skalierbarkeit und Performance](#skalierbarkeit-und-performance)
   - [Quellen](#quellen)
 
 # Auswerten
@@ -27,33 +26,56 @@ Im Kapitel Auswerten wird der Abschluss des Projektes beschrieben. Es wird Zusam
 
 ## Zusammenfassung
 
+Im Rahmen dieses Projekts lag der Schwerpunkt auf dem Aufsetzen und der Konfiguration eines Kubernetes-Clusters für einen bereits bestehenden „Music Eventfinder“-Microservice. Ziel war es, eine stabile und reproduzierbare Laufzeitumgebung zu schaffen, in der Anpassungen automatisiert über eine CI/CD-Pipeline und Argo CD bereitgestellt werden können.  
+Das Projekt diente dazu, grundlegende Kubernetes-Konzepte, GitOps-Ansätze sowie die Integration in einen DevOps-Prozess praxisnah umzusetzen.
+
 ## Reflexion
 
 ### Persönliche Reflexion
 
+Das Projekt bot mir die Möglichkeit, mich intensiv mit Kubernetes als Orchestrierungsplattform auseinanderzusetzen. Da der Microservice bereits entwickelt war, konnte ich mich vollständig auf die Infrastruktur und deren Betrieb konzentrieren. Besonders herausfordernd und zugleich lehrreich war das Verständnis der verschiedenen Kubernetes-Komponenten und deren Zusammenspiel innerhalb eines Clusters.
+
 #### Herausforderungen und Lösungen
- 
+
+Eine zentrale Herausforderung bestand im initialen Aufsetzen des Kubernetes-Clusters. Dabei traten unter anderem Probleme bei der ArgoCD konfiguration, der Secrets hinterlefung und dem Driver Hyper V auf. Diese Herausforderungen konnten durch gezielte Fehlersuche sowie durch das Studium von Logs und Statusinformationen gelöst werden. Hilfreich war zudem, das Cluster zunächst minimal aufzusetzen und anschließend schrittweise zu erweitern.
+
 ### Reflexion der technischen Umsetzung
 
 #### Analysen und Planung
 
+Zu Beginn wurde analysiert, welche Anforderungen der bestehende Microservice an die Kubernetes-Umgebung stellt. Dazu gehörten Aspekte wie benötigte Ressourcen, Netzwerkzugriff und Deployment-Struktur.  
+Auf dieser Basis wurde entschieden, wie der Cluster aufgebaut sein soll und welche Komponenten für den Betrieb notwendig sind, beispielsweise Ingress, Service-Definitionen und Namespaces.
+
 #### Entscheidung
+
+Die Entscheidung, den Schwerpunkt auf den Kubernetes-Cluster zu legen, wurde bewusst getroffen, da ein korrekt konfigurierter Cluster die Grundlage für alle weiteren DevOps-Prozesse bildet. Zusätzlich fiel die Wahl auf Argo CD als Deployment-Tool, um den Cluster nach GitOps-Prinzipien zu betreiben und eine saubere Trennung zwischen Infrastruktur, Anwendung und Deployment-Prozess zu gewährleisten.
 
 #### Umsetzung des Projektes
 
-#### Optimierung
- 
-### Fazit
+Die Umsetzung begann mit dem Aufbau des Kubernetes-Clusters und der Konfiguration der grundlegenden Cluster-Komponenten. Anschließend wurde der bestehende Microservice in den Cluster integriert und über definierte Services erreichbar gemacht.  
+Ergänzend wurde eine CI/CD-Pipeline eingerichtet, die Änderungen automatisch verarbeitet und an Argo CD übergibt, welches die Synchronisation mit dem Cluster übernimmt.
 
-#### Effizienzsteigerung
+## Fazit
 
-#### Lernerfahrungen
- 
-### Mögliche Weiterentwicklung
+### Effizienzsteigerung
 
-#### Erweiterte Funktionalität
+Durch das strukturierte Aufsetzen des Kubernetes-Clusters konnte eine stabile und skalierbare Umgebung geschaffen werden. In Kombination mit Argo CD und der CI/CD-Pipeline lassen sich Anpassungen nun automatisiert und reproduzierbar ausrollen. Dies reduziert manuelle Eingriffe und erhöht die Betriebssicherheit deutlich.
 
-#### Skalierbarkeit und Performance
+### Lernerfahrungen
+
+Das Projekt hat mein Verständnis für Kubernetes, Cluster-Architekturen und containerisierte Anwendungen wesentlich vertieft. Besonders wertvoll war die praktische Erfahrung im Aufbau und Betrieb eines Clusters sowie das Zusammenspiel mit GitOps- und CI/CD-Ansätzen. Ich habe gelernt, dass eine saubere Cluster-Konfiguration die Grundlage für erfolgreiche DevOps-Prozesse darstellt.
+
+## Mögliche Weiterentwicklung
+
+### Erweiterte Funktionalität
+
+Eine mögliche Weiterentwicklung wäre die Erweiterung des Clusters um zusätzliche Komponenten wie Monitoring- und Logging-Tools (z. B. Prometheus und Grafana). Dadurch ließe sich der Betriebszustand des Clusters noch besser überwachen.
+
+### Skalierbarkeit und Performance
+
+Im Bereich Skalierbarkeit könnten Funktionen wie Horizontal Pod Autoscaling oder Node Autoscaling integriert werden. Diese würden es ermöglichen, Lastspitzen automatisch abzufangen und die Performance des Microservices weiter zu verbessern.
+
+> (Chat GPT) [Quelle](https://chatgpt.com/share/696df157-04c4-8007-81c0-1f42a0b725c9)
 
 ## Quellen
 
@@ -72,6 +94,9 @@ Im Kapitel Auswerten wird der Abschluss des Projektes beschrieben. Es wird Zusam
 
 07.01.2026:
 > (Chat GPT) [Quelle](https://chatgpt.com/share/695e11ee-aca0-8007-a795-4b48d14060d5)
+
+19.01.2026:
+> (Chat GPT) [Quelle](https://chatgpt.com/share/696df157-04c4-8007-81c0-1f42a0b725c9)
 
 > Back [Page](https://lauradubach.github.io/Semesterarbeit4/Sites/Teil%203%20Realisierung.html)
 >

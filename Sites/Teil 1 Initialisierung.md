@@ -44,6 +44,7 @@ In diesem Kapitel wird ins Thema der Arbeit eingeführt. Es beschreibt den Hinte
 | 1.8 | 17.12.25 | Laura Dubach | Realisierung weiter dokumentieren |
 | 1.9 | 02.01.26 | Laura Dubach | Realisierung beenden und Tests dokumentieren |
 | 2.0 | 07.01.26 | Laura Dubach | Feedback von Corrado umsetzten |
+| 2.1 | 19.01.26 | Laura Dubach | Abschluss dokumentieren |
 
 # Aufgabenstellung
 
