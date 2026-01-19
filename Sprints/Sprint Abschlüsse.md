@@ -191,6 +191,34 @@ Alle vorgesehenen Story`s konnten fristgerecht abgeschlossen werden.
 
 Folgendes wurde genau umgesetzt:
 
+- Feinschliff & Erweiterung
+  - Verbesserungen dokumentiert und getestet.
+  - Erweiterungen beeinträchtigen keine Kernfunktionalität.
+  - Projektstand ist stabil.
+- Stabilisierung & Tests
+  - Tests laufen erfolgreich.
+  - Keine kritischen Bugs vorhanden.
+  - Anwendung ist testbereit.
+- Abschluss-Review, Reflexion & Retrospektive
+  - Sprint- und Projektziele wurden überprüft und bewertet.
+  - Erkenntnisse, Herausforderungen und Erfolge sind dokumentiert.
+  - Verbesserungsmöglichkeiten für zukünftige Projekte sind festgehalten.
+  - Feedback vom Betreuer oder Team wurde eingeholt und reflektiert.
+  - Retrospektive wurde protokolliert.
+- Projektdokumentation finalisieren
+  - Dokumentation umfasst Architektur, CI/CD-Pipeline, Kubernetes-Setup und Scrum-Prozess.
+  - Alle User Stories, Sprints und Ergebnisse sind beschrieben.
+  - Screenshots oder Diagramme sind enthalten.
+  - Dokumentation liegt in strukturierter Form vor.
+- Präsentation vorbereiten
+  - Präsentation ist vollständig.
+  - Mindestens ein Probedurchlauf erfolgt.
+  - Zeitrahmen wird eingehalten.
+- Abgabe Arbeit
+  - Abgabe erfolgt spätestens am 28.01.
+  - Bestätigung der Einreichung vorhanden.
+  - Alles ist final und unverändert.
+
 ## Sprint-Retrospektive 3
 
 ### Sonnenschein
@@ -205,4 +233,14 @@ Folgendes wurde genau umgesetzt:
 
 # Besprechung
 
-- burndownchart besprechen
+| Besprechung | Datum | Uhrzeit | Teilnehmer | 
+| ---- | ---- | ---- | ---- |
+| 1 | 13.06.2025 | 18:30 | Corrado Parisi, Laura Dubach |
+
+Wir hatten ein Gespräch über Teams. Ich hatte nur die Frage ob ich die Burndowncharts korrekt hinterlegt habe. Da ich gewisse Fibonacci punkte erst im nachhinein hinterlegt habe, waren die Charts nicht immer richtig. Deshalb habe ich die "Anzahl Vorgängen" hinterlegt beim ersten Sprint Abschluss.
+
+Er meinte das sei völlig plausiebel und sieht dem Brundownchart sehr ähndlich.
+
+Das Gespräch verlief gut. All meine Fragen konnten beantwortet werden und Corrado gab mir gute Tipps. Nun kann ich weiterarbeiten.
+
+
