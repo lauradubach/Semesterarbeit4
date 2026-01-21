@@ -283,6 +283,8 @@ Ein Beispiel für die Visualisierung ist in der folgenden Abbildung zu sehen. Da
 
 Durch diese Dashboards ist es möglich, Probleme frühzeitig zu erkennen, Trends zu analysieren und fundierte Aussagen über die Zuverlässigkeit der Infrastruktur zu treffen.
 
+> (Chat GPT) [Quelle](https://chatgpt.com/share/6970a9d5-3468-8007-8da6-0980bcc9719a)
+
 ## Aufgetretene Probleme
 
 Während der Umsetzung traten insbesondere bei der Verwendung von Secrets einige Probleme auf. Zunächst wurden die Secret-Dateien nicht auf den Cluster angewendet, was durch folgenden Befehl behoben wurde:

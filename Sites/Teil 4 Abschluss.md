@@ -69,11 +69,15 @@ Das Projekt hat mein Verständnis für Kubernetes, Cluster-Architekturen und con
 
 ### Erweiterte Funktionalität
 
-Eine mögliche Weiterentwicklung wäre die Erweiterung des Clusters um zusätzliche Komponenten wie Monitoring- und Logging-Tools (z. B. Prometheus und Grafana). Dadurch ließe sich der Betriebszustand des Clusters noch besser überwachen.
+Eine mögliche Weiterentwicklung wäre die stärkere Automatisierung der Infrastruktur durch den Einsatz von Infrastructure as Code (IaC), beispielsweise mit Tools wie Terraform oder Ansible. Dadurch könnte das gesamte Kubernetes-Cluster reproduzierbar erstellt und versioniert werden, was insbesondere bei mehreren Umgebungen wie Development, Staging und Production von Vorteil wäre.
+
+Zusätzlich könnte das GitOps-Konzept weiter ausgebaut werden, indem auch Konfigurationsänderungen auf Ingress-, Netzwerk- oder Sicherheits­ebene vollständig über das Git-Repository gesteuert werden.
 
 ### Skalierbarkeit und Performance
 
-Im Bereich Skalierbarkeit könnten Funktionen wie Horizontal Pod Autoscaling oder Node Autoscaling integriert werden. Diese würden es ermöglichen, Lastspitzen automatisch abzufangen und die Performance des Microservices weiter zu verbessern.
+Im Bereich Skalierbarkeit und Performance könnten fortgeschrittene Deployment-Strategien wie Rolling Updates oder Canary Deployments implementiert werden. Diese würden es ermöglichen, neue Versionen des Microservices schrittweise auszurollen und Risiken bei Updates zu minimieren.
+
+Darüber hinaus könnte eine stärkere Trennung der Workloads durch dedizierte Node Pools oder Taints und Tolerations umgesetzt werden, um Ressourcen gezielter zu nutzen und die Performance einzelner Anwendungen im Cluster weiter zu optimieren.
 
 > (Chat GPT) [Quelle](https://chatgpt.com/share/696df157-04c4-8007-81c0-1f42a0b725c9)
 
@@ -97,6 +101,9 @@ Im Bereich Skalierbarkeit könnten Funktionen wie Horizontal Pod Autoscaling ode
 
 19.01.2026:
 > (Chat GPT) [Quelle](https://chatgpt.com/share/696df157-04c4-8007-81c0-1f42a0b725c9)
+
+21.01.2026
+> (Chat GPT) [Quelle](https://chatgpt.com/share/6970a9d5-3468-8007-8da6-0980bcc9719a)
 
 > Back [Page](https://lauradubach.github.io/Semesterarbeit4/Sites/Teil%203%20Realisierung.html)
 >
