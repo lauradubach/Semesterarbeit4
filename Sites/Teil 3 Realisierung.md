@@ -12,8 +12,11 @@ Kommen wir zur Umsetzung des Projektes. In diesem Teil wird genau beschrieben, w
   - [Entwicklung](#entwicklung)
     - [Hilfreiche Kommandos:](#hilfreiche-kommandos)
     - [Umsetzung](#umsetzung)
-      - [In Argocd alles einrichten:](#in-argocd-alles-einrichten)
+      - [ArgoCD einrichten](#argocd-einrichten)
+        - [Konfiguration innerhalb von ArgoCD](#konfiguration-innerhalb-von-argocd)
+      - [Secrets:](#secrets)
     - [Automatisieren](#automatisieren)
+    - [Monitoring](#monitoring)
   - [Aufgetretene Probleme](#aufgetretene-probleme)
   - [Wechsel von Hyper-V zu Docker als Minikube-Driver](#wechsel-von-hyper-v-zu-docker-als-minikube-driver)
   - [Fallbacksolution](#fallbacksolution)
@@ -21,7 +24,6 @@ Kommen wir zur Umsetzung des Projektes. In diesem Teil wird genau beschrieben, w
   - [Testing](#testing)
     - [Testkonzept](#testkonzept)
     - [Testdurchführung](#testdurchführung)
-      - [Umgebung:](#umgebung)
 
 # Realisieren
 
@@ -114,7 +116,7 @@ Der Microservice Musiceventfinder ist in Flask (Python) implementiert und wird a
   - CI-Pipeline baut das Docker-Image und speichert es in der GitHub Container Registry.
   - Argo CD übernimmt anschließend das Deployment des fertigen Images.
 
-6. Virtualisierung (Hyper-V)
+6. Virtualisierung (Docker)
 
   - Lokale Entwicklungsumgebung für Minikube.
   - Ermöglicht Tests des Kubernetes-Clusters vor Cloud-Deployments.
@@ -123,7 +125,7 @@ Der Microservice Musiceventfinder ist in Flask (Python) implementiert und wird a
 
 - Entwickler pushen Code in das App Repository auf GitHub.
 - CI/CD-Pipeline baut ein Docker-Image und legt es in der GitHub Container Registry ab.
-- Argo CD überwacht das Config Repository, erkennt neue Image-Tags und deployed die aktualisierte Version in das Kubernetes-Cluster
+- Argo CD überwacht das Config Repository, erkennt neue Image-Tags und deployed die aktualisierte Version in den Kubernetes-Cluster
 - Ingress leitet den Benutzer-Traffic zur Musiceventfinder App.
 - Die App ruft Eventdaten von externen APIs ab, verarbeitet sie und stellt sie den Nutzern bereit.
 - Änderungen am Code führen so automatisch zu einem neuen Deployment der aktuellen Version.
@@ -132,62 +134,77 @@ Der Microservice Musiceventfinder ist in Flask (Python) implementiert und wird a
 
 ### Hilfreiche Kommandos:
 
-Löschen des Clusters falls nötig:
+Im Folgenden sind einige grundlegende Kommandos aufgeführt, die während der Entwicklung und beim Arbeiten mit Minikube und Kubernetes hilfreich sind.
+
+Cluster löschen (falls erforderlich):
+
 `minikube delete -p=c1`
 
 Namespace wechseln:
+
 `kubectl config set-context --current --namespace=<name>`
 
-In ArgoCD meine Applikation automatisch hinterlegen:
+Applikation automatisch in ArgoCD registrieren:
   
 `kubectl apply -f Minikube-Config/argocd/application.yaml -n argocd`
 
 ### Umsetzung
 
-Treiber setzten:
+Zuerst wird der Treiber für Minikube gesetzt. In diesem Projekt wurde Docker als Treiber verwendet:
+
 `minikube config set driver docker`
 
-Cluster starten:
+Anschliessend wird der Cluster mit dem Profil c1 gestartet:
+
 `minikube start -p c1`
 
-Profile kontrolle:
+Zur Kontrolle der vorhandenen Profile kann folgender Befehl verwendet werden:
+
 `minikube profile list`
 
 ![profilelist](../Pictures/profilelist.png)
 
-Pods anschauen:
+Um eine Übersicht über alle laufenden Pods in sämtlichen Namespaces zu erhalten, wird folgender Befehl ausgeführt:
+
 `kubectl get pods -A`
 
 ![pods](../Pictures/pods.png)
 
-Ingress Addon aktivieren:
+Damit Ingress-Ressourcen verwendet werden können, wird das entsprechende Addon aktiviert:
+
 `minikube addons enable ingress -p c1`
 
-Musicfinder Namespace erstellen:
+Anschliessend wird der Namespace für die Musicfinder-Applikation erstellt:
+
 `kubectl create namespace musicevents`
 
-Argocd:
+#### ArgoCD einrichten
+Zuerst wird ein eigener Namespace für ArgoCD erstellt und die offiziellen Installationsmanifeste angewendet:
+
 ```bash
 kubectl create namespace argocd
 kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
 ```
-Passwort ausgeben lassen für ArgoCD:
+Das initiale Admin-Passwort von ArgoCD kann mit folgendem Befehl ausgelesen werden:
+
 `sudo kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d`
 
-Port foward um auf ArgoCD zuzugreiffen:
+Um auf das ArgoCD Webinterface zugreifen zu können, wird ein Port-Forwarding eingerichtet:
+
 `kubectl -n argocd port-forward svc/argocd-server 8080:443`
 
 ![argocd](../Pictures/testargocd.png)
 
-#### In Argocd alles einrichten:
+##### Konfiguration innerhalb von ArgoCD
 
+Damit ArgoCD Zugriff auf das Container-Image erhält, muss ein gültiger GitHub Personal Access Token erstellt werden. Dabei ist darauf zu achten, dass der Token die notwendigen Berechtigungen besitzt.
 Access auf das Image gewährleisten:
 
 Token im Github erstellen, es ist wichtig das dieser folgende Rechte bekommt:
 
 ![Token Rechte](../Pictures/Tokenrechte.png)
 
-Token erstellen und hinterlegen:
+Der erstellte Token wird anschliessend als Docker-Registry-Secret in Kubernetes hinterlegt:
 
 ```
 kubectl create secret docker-registry ghcr-secret \
@@ -199,33 +216,37 @@ kubectl create secret docker-registry ghcr-secret \
   --dry-run=client -o yaml > ghcr-secret.yaml
 ```
 
-Auf Kubernetes Deployen:
+Dieses Secret wird danach auf den Cluster deployt:
 
 `kubectl apply -f ghcr-secret.yaml`
 
-Tunnel starten um auf Applikation zuzugreiffen:
-
-`minikube tunnel -p c1`
-
-Im Argocd Projekt erstellen und Syncen:
+Im ArgoCD-Projekt kann die Applikation nun synchronisiert werden:
 
 ![argocdprojekt](../Pictures/argocdprojekt.png)
 
-Alle Informationen:
+Um extern auf die Applikation zugreifen zu können, wird ein Tunnel gestartet:
+
+`minikube tunnel -p c1`
+
+Alle relevanten Informationen zur laufenden Applikation sind anschliessend sichtbar:
 
 ![Informationen](../Pictures/Informationen.png)
 
-Secrets:
+#### Secrets:
 
-Wichtig mit Base64 Encrypten: `echo "deinSecretWert" | base64`
+Secrets müssen in Kubernetes Base64-codiert hinterlegt werden. Dies kann mit folgendem Befehl erfolgen:
 
-Ticketmaster API:
+`echo "deinSecretWert" | base64`
+
+Beispiel für den Ticketmaster API-Key:
+
 ![secretapi](../Pictures/secretapi.png)
 
-Image Zugang:
+Zugangsdaten für das Container-Image:
+
 ![imagekey](../Pictures/imagekey.png)
 
-DNS im Hostfile eintragen:
+Zusätzlich wird ein DNS-Eintrag im lokalen Hostfile vorgenommen:
 
 ![hostfile](../Pictures/hostfile.png)
 
@@ -233,32 +254,50 @@ DNS im Hostfile eintragen:
 
 ### Automatisieren
 
-Da ich mehrere Male den Cluster neu mache musste, habe ich mich dazu entschieden ein Skript zu schreiben, dass alles automatisch macht bis auf das Port forwarding und den Minikube Tunnel zu starten.
+Da der Cluster während der Entwicklung mehrfach neu aufgesetzt werden musste, wurde ein Skript erstellt, welches den gesamten Setup-Prozess automatisiert. Ausgenommen davon sind lediglich das Port-Forwarding für ArgoCD sowie das Starten des Minikube-Tunnels.
 
-Das Skript liegt hier:
+Das Skript ist unter folgendem Link zu finden:
 
 > [Setup Minikube-Docker](https://github.com/lauradubach/Minikube-Config/blob/main/setup-minikube-docker.sh)
 
-Nun muss ich nur noch das File ausführen und dann Port forwarding für ArgoCD und den Tunnel starten für die App:
+Nach der Ausführung des Skripts müssen nur noch folgende Befehle manuell ausgeführt werden:
 
 `kubectl -n argocd port-forward svc/argocd-server 8080:443`
 `minikube tunnel -p c1`
 
+### Monitoring
+
+Da nach der erfolgreichen Umsetzung der Applikation noch Zeit zur Verfügung stand, wurde zusätzlich ein Monitoring-Stack bestehend aus Prometheus, Grafana und Alertmanager integriert. Ziel war es, den Zustand des Kubernetes-Clusters sowie der laufenden Applikation besser überwachen zu können und bei Problemen frühzeitig benachrichtigt zu werden.
+
+Prometheus wird dabei für das Sammeln der Metriken eingesetzt. Es erfasst unter anderem Informationen zur Ressourcennutzung, zum Status der Pods sowie zu allgemeinen Cluster-Metriken. Die Metriken werden in regelmässigen Abständen automatisch aus dem Cluster abgefragt.
+
+Grafana dient als Visualisierungsplattform für diese Daten. Über vordefinierte Dashboards können die gesammelten Metriken übersichtlich dargestellt werden. Dadurch ist es möglich, den Zustand des Systems in Echtzeit zu überwachen und Engpässe oder Auffälligkeiten schnell zu erkennen.
+
+Der Alertmanager ergänzt das Monitoring, indem er auf Basis definierter Regeln Alarme auslöst. Sobald bestimmte Schwellwerte überschritten werden oder Services nicht mehr erreichbar sind, können Benachrichtigungen ausgelöst werden. Dies ermöglicht ein proaktives Reagieren auf Fehler, noch bevor diese für Endnutzer sichtbar werden.
+
+Durch die Integration von Prometheus, Grafana und Alertmanager wurde die Plattform nicht nur funktional erweitert, sondern auch deutlich stabiler und wartungsfreundlicher gestaltet.
+
+![monitoring](../Pictures/monitoring.png)
+
+Ein Beispiel für die Visualisierung ist in der folgenden Abbildung zu sehen. Das Grafana-Dashboard zeigt Kennzahlen des Kubernetes API-Servers, darunter die Verfügbarkeit (Availability), das Error Budget sowie Leseanfragen und Fehlerraten. Die hohe Verfügbarkeit von über 99,9 % bestätigt den stabilen Betrieb des Clusters. Gleichzeitig ermöglichen die dargestellten SLI- und SLO-Werte eine objektive Bewertung der Servicequalität über einen definierten Zeitraum hinweg.
+
+Durch diese Dashboards ist es möglich, Probleme frühzeitig zu erkennen, Trends zu analysieren und fundierte Aussagen über die Zuverlässigkeit der Infrastruktur zu treffen.
+
 ## Aufgetretene Probleme
 
-Bei den Secrets hatte ich einige probleme.
+Während der Umsetzung traten insbesondere bei der Verwendung von Secrets einige Probleme auf. Zunächst wurden die Secret-Dateien nicht auf den Cluster angewendet, was durch folgenden Befehl behoben wurde:
 
-Zuerst hatte ich vergessen die Keys auf den Cluster zu pushen, mit `kubectl apply -f xxxx.yaml`
+`kubectl apply -f xxxx.yaml`
 
-Danach war das Problem, dass er etwas im File nicht lesen konnte:
+Anschliessend trat folgender Fehler auf:
 
-Error: `grpc: error while marshaling: string field contains invalid UTF-8`
+`grpc: error while marshaling: string field contains invalid UTF-8`
 
-Mir ist dann aufgefallen, dass ich den Ticketmaster Key nicht mit Base64 encryptet habe.
+Die Ursache war, dass der Ticketmaster API-Key nicht Base64-codiert war. Nach der korrekten Codierung mit folgendem Befehl:
 
-Das habe ich dann wie folgt gemacht: `echo "deinSecretWert" | base64`
+`echo "deinSecretWert" | base64`
 
-Danach hat alles geklappt.
+funktionierte die Anwendung wie erwartet.
 
 ## Wechsel von Hyper-V zu Docker als Minikube-Driver
 
@@ -332,8 +371,6 @@ Die Tests wurden manuell durchgeführt, um sicherzustellen, dass der Kubernetes-
 | Neustart des Clusters | Cluster startet erneut ohne Konfigurationsverlust | ![clusterneustart](../Pictures/clusterneustart.png) |
 
 Alle durchgeführten Tests verliefen erfolgreich. Der Wechsel auf den Docker-Driver führte zu einer stabileren Umgebung und beseitigte die zuvor aufgetretenen Startprobleme des API-Servers.
-
-#### Umgebung:
 
 > Back [Page](https://lauradubach.github.io/Semesterarbeit4/Sites/Teil%202%20Konzeption.html)
 >
