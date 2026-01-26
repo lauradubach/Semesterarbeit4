@@ -37,7 +37,7 @@ Das Projekt bot mir die Möglichkeit, mich intensiv mit Kubernetes als Orchestri
 
 #### Herausforderungen und Lösungen
 
-Eine zentrale Herausforderung bestand im initialen Aufsetzen des Kubernetes-Clusters. Dabei traten unter anderem Probleme bei der ArgoCD konfiguration, der Secrets hinterlefung und dem Driver Hyper V auf. Diese Herausforderungen konnten durch gezielte Fehlersuche sowie durch das Studium von Logs und Statusinformationen gelöst werden. Hilfreich war zudem, das Cluster zunächst minimal aufzusetzen und anschließend schrittweise zu erweitern.
+Eine zentrale Herausforderung bestand im initialen Aufsetzen des Kubernetes-Clusters. Dabei traten unter anderem Probleme bei der ArgoCD konfiguration, der Secrets hinterlegung und dem Driver Hyper V auf. Diese Herausforderungen konnten durch gezielte Fehlersuche sowie durch das Studium von Logs und Statusinformationen gelöst werden. Hilfreich war zudem, das Cluster zunächst minimal aufzusetzen und anschließend schrittweise zu erweitern.
 
 ### Reflexion der technischen Umsetzung
 

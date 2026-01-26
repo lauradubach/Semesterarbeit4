@@ -9,7 +9,7 @@
 Im Rahmen dieser Semesterarbeit wird der bestehende Microservice „Music Eventfinder“ auf Basis eines DevOps-Ansatzes automatisiert und skalierbar in einer Kubernetes-Umgebung bereitgestellt.
 Der Service ermöglicht Nutzern, Musikveranstaltungen in ihrer Nähe zu finden und stellt die Daten über eine REST-API bereit. Nutzerinformationen sowie deren Präferenzen werden sicher in einer Datenbank gespeichert.
 
-Ziel der Arbeit ist es, eine erweiterbare, moderne und praxisnahe Lösung umzusetzen, die die Kernaspekte von DevOps demonstriert.
+Ziel der Arbeit ist es, eine erweiterbare, moderne und praxisnahe Lösung umzusetzen, welche die Kernaspekte von DevOps demonstriert.
 
 ## Kurze Übersicht
 

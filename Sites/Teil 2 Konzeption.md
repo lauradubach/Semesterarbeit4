@@ -314,7 +314,7 @@ Derzeit läuft die Flask-App lokal in einem Docker-Container. Es existiert noch 
 
 ### Soll Zustand
 
-Ziel ist die Umsetzung einer modularen Microservice-Architektur, in der die Flask-App containerisiert läuft und lokal auf einem Minikube-Kubernetes-Cluster betrieben wird. Hyper-V stellt die Virtualisierung bereit, Ingress sorgt für sauberes Routing, und ArgoCD automatisiert die Deployments. Externe APIs wie Ticketmaster werden zuverlässig eingebunden, und die Versionsverwaltung erfolgt sauber getrennt zwischen App- und Config-Repositories. Die Architektur soll skalierbar, wartbar und erweiterbar sein, um künftige Microservices problemlos integrieren zu können.
+Ziel ist die Umsetzung einer modularen Microservice-Architektur, in der die Flask-App containerisiert läuft und lokal auf einem Minikube-Kubernetes-Cluster betrieben wird. Hyper-V stellt die Virtualisierung bereit, Ingress sorgt für sauberes Routing, und ArgoCD automatisiert die Deployments. Externe APIs wie Ticketmaster werden zuverlässig eingebunden und die Versionsverwaltung erfolgt sauber getrennt zwischen App- und Config-Repositories. Die Architektur soll skalierbar, wartbar und erweiterbar sein, um künftige Microservices problemlos integrieren zu können.
 
 > (Chat GPT) [Quelle](https://chatgpt.com/share/691c5c94-df1c-8007-92fd-93219b75bf52)
 
