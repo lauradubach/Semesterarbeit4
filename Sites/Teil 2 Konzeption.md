@@ -496,7 +496,7 @@ Minimaler Setup-Aufwand, ideal für schnelle lokale Tests, jedoch technisch weni
 #### Entscheidung
 Da ich das Projekt so realistisch wie möglich umsetzten möchte, werde ich mich für die Variante Minikube + Hyper-V entscheiden.
 
-> (Chat GPT) [Quelle][text](https://chatgpt.com/share/691c4131-e78c-8007-b99b-0448ad90d2e2)
+> (Chat GPT) [Quelle](https://chatgpt.com/share/691c4131-e78c-8007-b99b-0448ad90d2e2)
 
 > Back [Page](https://lauradubach.github.io/Semesterarbeit4/Sites/Teil%201%20Initialisierung.html)
 >

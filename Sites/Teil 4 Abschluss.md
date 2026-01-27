@@ -83,26 +83,52 @@ Darüber hinaus könnte eine stärkere Trennung der Workloads durch dedizierte N
 
 ## Quellen
 
-05.11.25:
+Kapitel Konzeption
+Chat GPT. (2025): SCRUM Erklärung. Aufgerufen am: 05.11.2025. Online unter:
+> (Chat GPT) [Quelle](https://chatgpt.com/share/6818f168-0354-800e-8c00-119b2ed7c509)
+
+Kapitel Konzeption
+Chat GPT. (2025): Warum SCRUM. Aufgerufen am: 05.11.2025. Online unter:
+> (Chat GPT) [Quelle](https://chatgpt.com/share/68230b9b-2d9c-800e-a1eb-64bd9fe8ed96)
+
+Kapitel Konzeption
+Chat GPT. (2025): Semesterarbeit DevOps Umsetzung. Aufgerufen am: 05.11.2025. Online unter:
 > (Chat GPT) [Quelle](https://chatgpt.com/share/6908ec06-4a2c-8007-834a-6013e399ba13)
+
+Kapitel Konzeption
+Chat GPT. (2025): Minikube vs Docker Kubernetes. Aufgerufen am: 05.11.2025. Online unter:
 > (Chat GPT) [Quelle](https://chatgpt.com/share/690b5e67-32b4-8007-999a-8bbbb27517c1)
 
-12.11.25:
+Kapitel Konzeption
+Chat GPT. (2025): Dokumentation schreiben. Aufgerufen am: 12.11.2025. Online unter:
 > (Chat GPT) [Quelle](https://chatgpt.com/share/69145d5b-1d28-8007-a9ab-019f02a428de)
 
-18.11.25:
+Kapitel Konzeption
+Chat GPT. (2025): Entscheidungsmatrix. Aufgerufen am: 18.11.2025. Online unter:
 > (Chat GPT) [Quelle](https://chatgpt.com/share/691c4131-e78c-8007-b99b-0448ad90d2e2)
+
+Kapitel Konzeption
+Chat GPT. (2025): Risikomatrix anpassen. Aufgerufen am: 28.11.2025. Online unter:
 > (Chat GPT) [Quelle](https://chatgpt.com/share/691c4eab-5f0c-8007-8817-4b7039fabc74)
+
+Kapitel Konzeption
+Chat GPT. (2025): Ist und Soll Zustand. Aufgerufen am: 18.11.2025. Online unter:
 > (Chat GPT) [Quelle](https://chatgpt.com/share/691c5c94-df1c-8007-92fd-93219b75bf52)
+
+Kapitel Konzeption
+Chat GPT. (2025): Implementierungsplan Projekt. Aufgerufen am: 18.11.2025. Online unter:
 > (Chat GPT) [Quelle](https://chatgpt.com/share/691c632c-1b80-8007-9f6a-b2ee70f95a04)
 
-07.01.2026:
+Kapitel Initialisieren
+Chat GPT. (2026): Fibonacci in SCRUM implementieren. Aufgerufen am: 07.01.2026. Online unter:
 > (Chat GPT) [Quelle](https://chatgpt.com/share/695e11ee-aca0-8007-a795-4b48d14060d5)
 
-19.01.2026:
+Kapitel Abschluss
+Chat GPT. (2026): Projekt Anfrage. Aufgerufen am: 19.01.2026. Online unter:
 > (Chat GPT) [Quelle](https://chatgpt.com/share/696df157-04c4-8007-81c0-1f42a0b725c9)
 
-21.01.2026
+Kapitel Realisierung
+Chat GPT. (2026): Textverbesserung Semesterarbeit. Aufgerufen am: 21.01.2026. Online unter:
 > (Chat GPT) [Quelle](https://chatgpt.com/share/6970a9d5-3468-8007-8da6-0980bcc9719a)
 
 > Back [Page](https://lauradubach.github.io/Semesterarbeit4/Sites/Teil%203%20Realisierung.html)

@@ -10,11 +10,11 @@ Kommen wir zur Umsetzung des Projektes. In diesem Teil wird genau beschrieben, w
     - [Komponenten im Detail](#komponenten-im-detail)
       - [Zusammenspiel der Komponenten](#zusammenspiel-der-komponenten)
   - [Entwicklung](#entwicklung)
-    - [Hilfreiche Kommandos:](#hilfreiche-kommandos)
+    - [Hilfreiche Kommandos](#hilfreiche-kommandos)
     - [Umsetzung](#umsetzung)
       - [ArgoCD einrichten](#argocd-einrichten)
         - [Konfiguration innerhalb von ArgoCD](#konfiguration-innerhalb-von-argocd)
-      - [Secrets:](#secrets)
+      - [Secrets](#secrets)
     - [Automatisieren](#automatisieren)
     - [Monitoring](#monitoring)
   - [Aufgetretene Probleme](#aufgetretene-probleme)
@@ -132,7 +132,7 @@ Der Microservice Musiceventfinder ist in Flask (Python) implementiert und wird a
 
 ## Entwicklung
 
-### Hilfreiche Kommandos:
+### Hilfreiche Kommandos
 
 Im Folgenden sind einige grundlegende Kommandos aufgeführt, die während der Entwicklung und beim Arbeiten mit Minikube und Kubernetes hilfreich sind.
 
@@ -232,7 +232,7 @@ Alle relevanten Informationen zur laufenden Applikation sind anschliessend sicht
 
 ![Informationen](../Pictures/Informationen.png)
 
-#### Secrets:
+#### Secrets
 
 Secrets müssen in Kubernetes Base64-codiert hinterlegt werden. Dies kann mit folgendem Befehl erfolgen:
 
