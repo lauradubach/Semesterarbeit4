@@ -221,15 +221,32 @@ Folgendes wurde genau umgesetzt:
 
 ## Sprint-Retrospektive 3
 
+![retro3](../Pictures/SA4_Retro3.jpg)
+
 ### Sonnenschein
+
+- Alle Tests laufen erfolgreich durch
+- Präsentation wurde erfolgreich durchgeführt
+- Sprint- und Projektziele wurden erreicht
 
 ### Auftrieb
 
+- Gute Vorbereitung aus vorherigen Sprints
+- Hohe Eigenmotivation im Endspurt
+
 ### Gewitterwolken
+
+- Hoher Aufwand in der Abschlussphase
 
 ### Sandballast
 
+- Hoher Dokumentationsaufwand
+- Letzte Nacharbeiten nötig
+
 ### Ausblick
+
+- Struktur beibehalten
+- Erkenntnisse übernehmen
 
 # Besprechung
 

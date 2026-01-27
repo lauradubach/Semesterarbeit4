@@ -46,6 +46,8 @@ In diesem Kapitel wird ins Thema der Arbeit eingeführt. Es beschreibt den Hinte
 | 2.0 | 07.01.26 | Laura Dubach | Feedback von Corrado umsetzten |
 | 2.1 | 19.01.26 | Laura Dubach | Abschluss dokumentieren |
 | 2.2 | 21.01.26 | Laura Dubach | Monitoring umsetzten und nachdokumentieren |
+| 2.3 | 27.01.26 | Laura Dubach | Dokumentation finalisieren |
+| 2.4 | 27.01.26 | Laura Dubach | Sprint Abschluss & Retrospektive 3 |
 
 # Aufgabenstellung
 
