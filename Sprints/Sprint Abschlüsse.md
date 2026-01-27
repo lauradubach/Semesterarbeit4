@@ -21,6 +21,7 @@
     - [Ausblick](#ausblick-1)
   - [Sprint Review 3](#sprint-review-3)
     - [Abgeschlossene Story\`s](#abgeschlossene-storys-2)
+  - [Burndownchart](#burndownchart-2)
   - [Sprint-Retrospektive 3](#sprint-retrospektive-3)
     - [Sonnenschein](#sonnenschein-2)
     - [Auftrieb](#auftrieb-2)
@@ -218,6 +219,14 @@ Folgendes wurde genau umgesetzt:
   - Abgabe erfolgt spätestens am 28.01.
   - Bestätigung der Einreichung vorhanden.
   - Alles ist final und unverändert.
+
+Siehe Teil Realisierung & Abschluss: 
+- > [Teil 3](https://lauradubach.github.io/Semesterarbeit4/Sites/Teil%203%20Realisierung.html) Realisierung
+- > [Teil 4](https://lauradubach.github.io/Semesterarbeit4/Sites/Teil%204%20Abschluss.html) Abschluss
+
+## Burndownchart
+
+![Chart3](../Pictures/Chart3.png)
 
 ## Sprint-Retrospektive 3
 
