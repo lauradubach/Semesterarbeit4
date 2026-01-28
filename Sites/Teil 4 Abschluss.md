@@ -73,11 +73,11 @@ Eine mögliche Weiterentwicklung wäre die stärkere Automatisierung der Infrast
 
 Zusätzlich könnte das GitOps-Konzept weiter ausgebaut werden, indem auch Konfigurationsänderungen auf Ingress-, Netzwerk- oder Sicherheits­ebene vollständig über das Git-Repository gesteuert werden.
 
+Im Bereich Monitoring könnte man, dass Alert Systen erweitern, dass man Benachrichtigt wird, wenn es ein Problem gibt.
+
 ### Skalierbarkeit und Performance
 
 Im Bereich Skalierbarkeit und Performance könnten fortgeschrittene Deployment-Strategien wie Rolling Updates oder Canary Deployments implementiert werden. Diese würden es ermöglichen, neue Versionen des Microservices schrittweise auszurollen und Risiken bei Updates zu minimieren.
-
-Darüber hinaus könnte eine stärkere Trennung der Workloads durch dedizierte Node Pools oder Taints und Tolerations umgesetzt werden, um Ressourcen gezielter zu nutzen und die Performance einzelner Anwendungen im Cluster weiter zu optimieren.
 
 > (Chat GPT) [Quelle](https://chatgpt.com/share/696df157-04c4-8007-81c0-1f42a0b725c9)
 
